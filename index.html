@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuno David Lopes — Numerical analysis &amp; industrial mathematics</title>
+<meta name="description" content="Nuno David Lopes — Assistant Professor of Mathematics at ISEL (Polytechnic University of Lisbon) and researcher at CEMAT, Universidade de Lisboa. Finite element methods for water waves and viscous flows; optimization and industrial mathematics.">
+<meta name="author" content="Nuno David Lopes">
+<link rel="canonical" href="https://ndlopes-github.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add("js")</script>
+<script src="js/site.js" defer></script>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1318" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Nuno David Lopes">
+<meta property="og:description" content="Numerical analysis of PDEs, water waves, viscous flows, and industrial mathematics. ISEL · CEMAT.">
+<meta property="og:url" content="https://ndlopes-github.github.io/">
+<meta property="og:image" content="https://ndlopes-github.github.io/media/waves-tsunami.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nuno David Lopes",
+  "alternateName": "N. D. Lopes",
+  "jobTitle": "Assistant Professor of Mathematics",
+  "email": "mailto:nuno.lopes@isel.pt",
+  "url": "https://ndlopes-github.github.io/",
+  "affiliation": [
+    {"@type": "CollegeOrUniversity", "name": "Instituto Superior de Engenharia de Lisboa (ISEL), Polytechnic University of Lisbon", "url": "https://www.isel.pt/"},
+    {"@type": "ResearchOrganization", "name": "CEMAT – Center for Computational and Stochastic Mathematics, Universidade de Lisboa", "url": "https://cemat.tecnico.ulisboa.pt/"}
+  ],
+  "alumniOf": [
+    {"@type": "CollegeOrUniversity", "name": "Faculdade de Ciências e Tecnologia, Universidade Nova de Lisboa"},
+    {"@type": "CollegeOrUniversity", "name": "Faculdade de Ciências, Universidade de Lisboa"}
+  ],
+  "knowsAbout": ["Numerical analysis", "Finite element methods", "Discontinuous Galerkin methods", "Water waves", "Boussinesq equations", "Navier–Stokes equations", "Mixed-integer linear programming", "Industrial mathematics"],
+  "sameAs": [
+    "https://orcid.org/0000-0001-9577-0347",
+    "https://github.com/ndlopes-github",
+    "https://www.cienciavitae.pt/pt/3312-D2F4-EF2F",
+    "https://www.researchgate.net/profile/N-Lopes",
+    "https://www.linkedin.com/in/nuno-lopes-789b38a/"
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-orcid" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="i-researchgate" viewBox="0 0 24 24"><path fill="currentColor" d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></g></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.5c.6-1.7 1.8-2.6 3.2-2.6s2.6.9 3.2 2.6M14.5 10h4M14.5 13.5h4"/></g></symbol>
+  <symbol id="i-inst" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 20V9.5L12 5l7 4.5V20M9 20v-6h6v6"/></g></symbol>
+</svg>
+
+<header class="site-head" id="top">
+  <div class="wrap head-grid">
+    <!-- Portrait: save a square photo as img/portrait.jpg and uncomment this line.
+    <img class="portrait" src="img/portrait.jpg" width="176" height="176" alt="Nuno David Lopes"> -->
+    <div class="who">
+      <h1>Nuno David Lopes</h1>
+      <p class="role">Assistant Professor, Department of Mathematics, <a href="https://www.isel.pt/">ISEL</a> — Polytechnic University of Lisbon</p>
+      <p class="role">Researcher, <a href="https://cemat.tecnico.ulisboa.pt/">CEMAT</a>, Universidade de Lisboa</p>
+      <ul class="kw" aria-label="Research areas">
+        <li>Numerical analysis of PDEs</li><li>Finite element methods</li><li>Water waves</li><li>Viscous flows</li><li>Optimization</li><li>Industrial mathematics</li>
+      </ul>
+      <ul class="social" aria-label="Contact and profiles">
+        <li><a href="mailto:nuno.lopes@isel.pt"><svg class="ic"><use href="#i-mail"/></svg>nuno.lopes@isel.pt</a></li>
+        <li><a href="https://orcid.org/0000-0001-9577-0347"><svg class="ic ic-orcid"><use href="#i-orcid"/></svg>ORCID</a></li>
+        <li><a href="https://github.com/ndlopes-github"><svg class="ic"><use href="#i-github"/></svg>GitHub</a></li>
+        <li><a href="https://www.cienciavitae.pt/pt/3312-D2F4-EF2F"><svg class="ic"><use href="#i-id"/></svg>Ciência Vitae</a></li>
+        <li><a href="https://cemat.tecnico.ulisboa.pt/member.php?project_id=4&amp;member_id=216"><svg class="ic"><use href="#i-inst"/></svg>CEMAT</a></li>
+        <li><a href="https://www.researchgate.net/profile/N-Lopes"><svg class="ic"><use href="#i-researchgate"/></svg>ResearchGate</a></li>
+        <li><a href="https://www.linkedin.com/in/nuno-lopes-789b38a/"><svg class="ic"><use href="#i-linkedin"/></svg>LinkedIn</a></li>
+        <li><a href="https://www.youtube.com/channel/UCFvEkGMsP_IoCOwNkKcReyA/videos"><svg class="ic"><use href="#i-youtube"/></svg>Simulations</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<nav class="topnav" aria-label="Sections">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">N.&nbsp;D.&nbsp;Lopes</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#wip">In progress</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#software">Software</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#talks">Talks</a></li>
+      <li><a href="#supervision">Supervision</a></li>
+      <li><a href="#service">Service</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main" class="wrap">
+
+<!-- ================================================================ ABOUT -->
+<section id="about" aria-labelledby="about-h">
+  <h2 id="about-h">About</h2>
+  <p class="lede">I am an Assistant Professor in the Department of Mathematics at the Instituto Superior de Engenharia de Lisboa (ISEL), Polytechnic University of Lisbon, and a researcher at CEMAT, Universidade de Lisboa.</p>
+  <p>My background is the numerical analysis of partial differential equations: continuous and continuous/discontinuous Galerkin finite element methods for models in fluid mechanics, above all Boussinesq-type models for surface water waves. During my PhD I wrote <a href="#software">DOLFWAVE</a>, a FEniCS-based library for surface water wave problems.</p>
+  <p>Over the last decade my work has moved increasingly into industrial mathematics: mixed-integer optimization, heuristics, scheduling and spatial planning, and data-driven models. These problems usually come from Portuguese companies and institutions, through the European Study Groups with Industry and through student internships.</p>
+
+  <div class="about-cols">
+  <div>
+  <h3 class="eyebrow">News</h3>
+  <ul class="news">
+    <li><time datetime="2026-10">Oct 2026</time><span>Co-organizing <a href="#service">amim’26</a>, the Autumn Meeting for Industrial Mathematics, Foz do Arelho, 16–17 October.</span></li>
+    <li><time datetime="2026-08">Aug 2026</time><span>Code release for the shoe-sole scheduling paper (MILP models and heuristics): <a href="https://doi.org/10.5281/zenodo.20642118">ShoeOptSetupTime</a>.</span></li>
+    <li><time datetime="2026-04">Apr 2026</time><span>ESGI&nbsp;181 report on <a href="#r-wine-2026">wine sensory evaluation</a> in <em>Mathematics in Industry Reports</em>.</span></li>
+    <li><time datetime="2026-04">Apr 2026</time><span><a href="#p-cose-2026">Damage evolution formulation: a new approach</a>, with LNEC, in <em>Coastal and Offshore Science and Engineering</em>.</span></li>
+  </ul>
+  </div>
+  <div>
+  <h3 class="eyebrow">Education</h3>
+  <dl class="facts">
+    <dt>2014</dt><dd>PhD in Mathematics (Numerical Analysis), Faculdade de Ciências e Tecnologia, Universidade Nova de Lisboa. Advisors: P.&nbsp;J.&nbsp;S.&nbsp;Pereira and L.&nbsp;Trabucho.</dd>
+    <dt>2004</dt><dd>MSc in Mathematics (Functional Analysis and Differential Equations), Faculdade de Ciências, Universidade de Lisboa. Advisor: L.&nbsp;Trabucho.</dd>
+    <dt>2000</dt><dd>BSc in Pure Mathematics, Faculdade de Ciências, Universidade de Lisboa.</dd>
+    <dt>since 2002</dt><dd>Faculty, Department of Mathematics, ISEL.</dd>
+  </dl>
+  </div>
+  </div>
+</section>
+
+<!-- ============================================================= RESEARCH -->
+<section id="research" aria-labelledby="research-h">
+  <h2 id="research-h">Research</h2>
+
+  <div class="themes">
+    <article class="theme">
+      <figure>
+        <div class="plate dark"><video class="anim" muted loop playsinline controls preload="none" width="712" height="456"
+          poster="media/waves-tsunami.jpg" aria-label="Animation: a ring-shaped tsunami wave spreading over three-dimensional bathymetry off the Portuguese coast, coloured by surface elevation.">
+          <source src="media/waves-tsunami.mp4" type="video/mp4"></video></div>
+        <figcaption>Toy tsunami along the Portuguese coast, surface elevation (2016) · <a href="https://www.youtube.com/watch?v=mesCz0e27qs">YouTube</a></figcaption>
+      </figure>
+      <h3>Water waves and Boussinesq-type models</h3>
+      <p>Derivation, analysis and finite element discretization of improved Boussinesq-type models for surface water waves: travelling-wave and soliton-type solutions, continuous/discontinuous Galerkin methods, and time-dependent bathymetry. With LNEC, coastal-engineering applications: breakwater damage, wave-model calibration, and early-warning systems for ports.</p>
+      <p class="meta">Key papers: <a href="#p-ijnmf-2012">IJNMF 2012</a> · <a href="#p-nody-2015">Nonlinear Dyn. 2015</a> · <a href="#c-fenics-2012">FEniCS book</a> · <a href="#p-cose-2026">COSE 2026</a></p>
+    </article>
+
+    <article class="theme">
+      <figure>
+        <div class="plate"><video class="anim" muted loop playsinline controls preload="none" width="410" height="176"
+          poster="media/flow-chamber.jpg" aria-label="Animation: vorticity of a flow entering a rounded chamber through a channel, with vortices forming and drifting inside the chamber.">
+          <source src="media/flow-chamber.mp4" type="video/mp4"></video></div>
+        <figcaption>Flow through a rounded chamber, Re ≈ 10⁴: vorticity (FreeFem++, 2007–08) · <a href="media/flow-chamber.mp4">full size</a></figcaption>
+      </figure>
+      <h3>Viscous flows and fourth-order problems</h3>
+      <p>With H.&nbsp;B.&nbsp;de&nbsp;Oliveira: continuous/discontinuous Galerkin approximations of fourth-order nonlinear problems and of a two-dimensional Navier–Stokes problem arising in fluid confinement. Related: the MathMould project (2019–20) on water-assisted injection molding.</p>
+      <p class="meta">Key papers: <a href="#p-camwa-2021">CAMWA 2021</a> · <a href="#p-ijnam-2024">IJNAM 2024</a></p>
+    </article>
+
+    <article class="theme">
+      <figure>
+        <div class="plate"><video class="anim" muted loop playsinline controls preload="none" width="1000" height="500"
+          poster="media/race-boostrace.jpg" aria-label="Animation: thousands of runners, coloured by start wave, moving along a 10 km road that narrows near the start and climbs between 6.5 and 8.5 km; an elevation profile is shown below.">
+          <source src="media/race-boostrace.mp4" type="video/mp4"></video></div>
+        <figcaption>BoostRace: 10&nbsp;000 runners in three start waves on a 10&nbsp;km course, one frame per 15&nbsp;s of race time. Lateral positions are for display only; the model is one-dimensional. · <a href="media/race-boostrace.mp4">full size</a></figcaption>
+      </figure>
+      <h3>Optimization and industrial mathematics</h3>
+      <p>Mixed-integer linear programming and heuristics for problems brought by industry: siting communication antennas along railway lines, parallel-machine scheduling with simultaneous interruptions in shoe-sole production, simulating mass-start urban running races, and consistent scoring in wine sensory panels. Most began at a European Study Group with Industry.</p>
+      <p class="meta">Key papers: <a href="#p-4or-2025">4OR 2025</a> · <a href="#p-jmi-2023">J. Math. Industry 2023</a> · <a href="#reports">ESGI reports</a></p>
+    </article>
+
+    <article class="theme">
+      <figure>
+        <div class="plate"><video class="anim" muted loop playsinline controls preload="none" width="384" height="400"
+          poster="media/tagus-transport.jpg" aria-label="Animation: a pollutant released in the middle of the Tagus estuary spreading and being carried towards the estuary mouth.">
+          <source src="media/tagus-transport.mp4" type="video/mp4"></video></div>
+        <figcaption>A pollutant released in the Tagus estuary, carried and diffused (MSc work) · <a href="media/tagus-transport.mp4">full size</a></figcaption>
+      </figure>
+      <h3>Earlier work: convection–diffusion</h3>
+      <p>My MSc thesis applied the finite element method to a class of convection–diffusion problems, with the propagation of a pollutant in the Tagus estuary as the application.</p>
+      <p class="meta">See: <a href="#theses">MSc thesis</a> · <a href="#k-cmce-2004">CMCE 2004</a></p>
+    </article>
+  </div>
+  <p class="more"><a href="#gallery">More simulations in the gallery →</a></p>
+
+</section>
+
+<!-- ===================================================== WORK IN PROGRESS -->
+<section id="wip" aria-labelledby="wip-h">
+  <h2 id="wip-h">Work in progress</h2>
+
+  <h3 class="eyebrow">Software in development</h3>
+  <ol class="entries">
+    <li id="w-dolfwave-julia"><span class="yr">ongoing</span><div class="cite">
+      <span class="t">DOLFWAVE in Julia</span>
+      DOLFWAVE, my FEniCS-based library for surface water waves (C++/Python, 2010–2015), is being updated and ported to Julia, building on the Gridap.jl finite element package.
+      <span class="links"><a href="#software">Current DOLFWAVE</a></span></div></li>
+  </ol>
+
+  <h3 class="eyebrow">Papers under review</h3>
+  <!-- review:begin -->
+    <ol class="pubs">
+      <li class="pub" id="s-breakwaters" data-topics="coastal">
+        <div class="pub-meta"><span class="vbadge t-coastal">Review</span></div>
+        <div class="cite">
+          <span class="t">Probabilistic damage evolution of tetrapod-armoured rubble-mound breakwaters: calibration from 3D physical modelling and 100-year forecasts</span>
+          <span class="au">A.&nbsp;Mendonça, R.&nbsp;Lemos, C.&nbsp;J.&nbsp;E.&nbsp;M.&nbsp;Fortes, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, A.&nbsp;Prior, L.&nbsp;Brito, B.&nbsp;Pereira, T.&nbsp;Lopes</span>
+          <span class="ve">Under review</span>
+        </div>
+      </li>
+      <li class="pub" id="s-shoes" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">Review</span></div>
+        <div class="cite">
+          <span class="t">Parallel machine scheduling with simultaneous interruptions: a case study in shoe sole production</span>
+          <span class="au">J.&nbsp;O.&nbsp;Cerdeira, R.&nbsp;Enguiça, <span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve">Under review</span>
+          <div class="actions"><a href="https://github.com/ndlopes-github/ShoeOptSetupTime">Code</a><a href="https://doi.org/10.5281/zenodo.20642118">Zenodo</a></div>
+        </div>
+      </li>
+    </ol>
+  <!-- review:end -->
+</section>
+
+<!-- ========================================================= PUBLICATIONS -->
+<section id="publications" aria-labelledby="pub-h">
+  <h2 id="pub-h">Publications</h2>
+  <div class="filters" role="group" aria-label="Filter publications by topic" data-scope="#publications">
+    <button type="button" class="chip on" data-topic="all" aria-pressed="true">All</button>
+    <button type="button" class="chip" data-topic="waves" aria-pressed="false">Water waves</button>
+    <button type="button" class="chip" data-topic="coastal" aria-pressed="false">Coastal engineering</button>
+    <button type="button" class="chip" data-topic="flows" aria-pressed="false">Viscous flows</button>
+    <button type="button" class="chip" data-topic="industry" aria-pressed="false">Optimization &amp; industry</button>
+    <button type="button" class="chip" data-topic="other" aria-pressed="false">Other</button>
+  </div>
+  <!-- pubs:begin -->
+  <div class="pubgroup">
+    <h3 class="eyebrow">Journal articles</h3>
+    <ol class="pubs">
+      <li class="pub" id="p-cose-2026" data-topics="coastal">
+        <div class="pub-meta"><span class="vbadge t-coastal">COSE</span><span class="yr">2026</span></div>
+        <div class="cite">
+          <span class="t">Damage evolution formulation: a new approach</span>
+          <span class="au">R.&nbsp;Lemos, A.&nbsp;Mendonça, C.&nbsp;J.&nbsp;E.&nbsp;M.&nbsp;Fortes, C.&nbsp;Martinez, H.&nbsp;Girão, T.&nbsp;Lopes, L.&nbsp;Brito, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, A.&nbsp;Prior</span>
+          <span class="ve"><em>Coastal and Offshore Science and Engineering</em> 5, 36–47</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="p-cose-2026-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="p-cose-2026-bib">BibTeX</button><a href="https://doi.org/10.53256/COSE_240103">DOI</a></div>
+          <div class="panel abs" id="p-cose-2026-abs"><p>One of the most influential contributions to damage progression formulations was introduced by Melby and Kobayashi. Their initial model was published in Melby and Kobayashi (1988a, b) and subsequently reformulated in Melby and Kobayashi (1999) to allow for non-zero initial damage values. A comprehensive description of these developments is provided in Melby (1999). The formulation predicts damage evolution in rubble mound breakwaters (RMBs) with rock-armoured layers, based on erosion measured in physical scale-model tests and on the characteristics of the incident wave conditions. However, the applicability of this formulation is limited to rock armour layers and to the range of sea states investigated in the original experiments. The present work revisits the Melby and Kobayashi damage evolution formulation and investigates its extension to rubble mound breakwaters armoured with tetrapods. A first approach was previously undertaken using a two-dimensional scale model of a section of the Ericeira breakwater (Lemos et al., 2023), leading to the calibration of new coefficients for the Melby formulation (<em>a</em><sub>p</sub> = 0.03 and <em>b</em> = 0.16). The objective of the present study is to further adjust these coefficients for comparable sea states while accounting for three-dimensional effects on damage evolution, including frontal wave attack. To this end, a long-duration test series (Series A) and two additional series with limited test durations (Series B and C) were conducted using a 1:65 three-dimensional physical model of the Ericeira harbour breakwater. The eroded volume of a selected section of the armour layer was measured using a Kinect position sensor. The damage parameter values obtained from the three-dimensional experiments are higher than those predicted by the formulation derived from the two-dimensional tests (Lemos et al., 2023). Based on the three-dimensional experimental results, new values of the coefficients <em>a</em><sub>p</sub> and <em>b</em> for the Melby and Kobayashi formulation were determined by minimising the root mean square error between measured and predicted damage. The predictive relationships proposed by Melby and Kobayashi (1988a, b), calibrated with <em>a</em><sub>p</sub> = 0.025 and <em>b</em> = 0.30 for the present test programme and accounting for three-dimensional effects associated with bathymetry, are shown to provide a reasonable description of damage evolution, with deviations remaining within an acceptable standard deviation.</p></div>
+          <div class="panel bib" id="p-cose-2026-bib"><pre><code>@article{Lemos2026damage,
+  author  = {Lemos, R. and Mendonça, A. and Fortes, C. J. E. M. and Martinez, C. and Girão, H. and Lopes, T. and Brito, L. and Lopes, N. D. and Prior, A.},
+  title   = {Damage evolution formulation: a new approach},
+  journal = {Coastal and Offshore Science and Engineering},
+  number  = {5},
+  pages   = {36--47},
+  year    = {2026},
+  doi     = {10.53256/COSE_240103}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="p-4or-2025" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">4OR</span><span class="yr">2025</span></div>
+        <div class="cite">
+          <span class="t">Minimizing costs in signal provision by communication antennas along a railway line</span>
+          <span class="au">A.&nbsp;Araújo, J.&nbsp;O.&nbsp;Cerdeira, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, A.&nbsp;Moura</span>
+          <span class="ve"><em>4OR – A Quarterly Journal of Operations Research</em> 23(4), 435–454</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="p-4or-2025-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="p-4or-2025-bib">BibTeX</button><a href="https://doi.org/10.1007/s10288-025-00599-7">DOI</a><a href="https://github.com/ndlopes-github/RailwayOptSitePos">Code</a></div>
+          <div class="panel abs" id="p-4or-2025-abs"><p>In this paper we address a wireless network design problem on a railway line. Given a finite set of locations along a railway line and different types of communication antennas that can be installed at each of these locations, which locations and which type of antenna should be selected to ensure a certain level of signal coverage along the railway line while minimizing construction costs? We formulate the problem as a 0/1 linear optimization model, prove that the problem is NP-hard, and report computational experiments using real and simulated data. The computational tests showed that the model is capable of solving the problem for railway lines longer than any existing real railway lines.</p></div>
+          <div class="panel bib" id="p-4or-2025-bib"><pre><code>@article{Araujo2025minimizing,
+  author  = {Araújo, A. and Cerdeira, J. O. and Lopes, N. D. and Moura, A.},
+  title   = {Minimizing costs in signal provision by communication antennas along a railway line},
+  journal = {4OR -- A Quarterly Journal of Operations Research},
+  volume  = {23},
+  number  = {4},
+  pages   = {435--454},
+  year    = {2025},
+  doi     = {10.1007/s10288-025-00599-7}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="p-ijnam-2024" data-topics="flows">
+        <div class="pub-meta"><span class="vbadge t-flows">IJNAM</span><span class="yr">2024</span></div>
+        <div class="cite">
+          <span class="t">Continuous/discontinuous finite element approximation of a 2D Navier–Stokes problem arising in fluid confinement</span>
+          <span class="au">H.&nbsp;B.&nbsp;de&nbsp;Oliveira, <span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve"><em>International Journal of Numerical Analysis and Modeling</em> 21(3), 315–352</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="p-ijnam-2024-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="p-ijnam-2024-bib">BibTeX</button><a href="https://doi.org/10.4208/ijnam2024-1013">DOI</a></div>
+          <div class="panel abs" id="p-ijnam-2024-abs"><p>In this work, a stationary 2d Navier–Stokes problem with nonlinear feedback forces field is considered in the stream-function formulation. We use the Continuous/Discontinuous Finite Element Method (CD-FEM), with interior penalty terms, to numerically solve the associated boundary-value problem. For the associated continuous and discrete problems, we prove the existence of weak solutions and establish the conditions for their uniqueness. Consistency, stability and convergence of the method are also shown analytically. To validate the numerical model regarding its applicability and robustness, several test cases are carried out.</p></div>
+          <div class="panel bib" id="p-ijnam-2024-bib"><pre><code>@article{Oliveira2024continuous,
+  author  = {de Oliveira, H. B. and Lopes, N. D.},
+  title   = {Continuous/discontinuous finite element approximation of a {2D} {Navier--Stokes} problem arising in fluid confinement},
+  journal = {International Journal of Numerical Analysis and Modeling},
+  volume  = {21},
+  number  = {3},
+  pages   = {315--352},
+  year    = {2024},
+  doi     = {10.4208/ijnam2024-1013}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="p-jmi-2023" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">JMI</span><span class="yr">2023</span></div>
+        <div class="cite">
+          <span class="t">The modelling of urban running races</span>
+          <span class="au">R.&nbsp;Enguiça, <span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve"><em>Journal of Mathematics in Industry</em> 13</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="p-jmi-2023-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="p-jmi-2023-bib">BibTeX</button><a href="https://doi.org/10.1186/s13362-023-00136-3">DOI</a><a href="https://github.com/ndlopes-github/BoostRace">Code</a></div>
+          <div class="panel abs" id="p-jmi-2023-abs"><p>In this paper, we model mass running urban races, taking into consideration several conditioning factors. The main goal is to find ideal configurations of the start of the race, splitting it into several waves, reducing the density of athletes and the overall time lost, when comparing the normal race results with a race without density constraints. This model takes into account distinct realistic runners’ profiles, changes in slope and width on the race course and its influence on the running pace. Moreover, density levels, dynamics of the start of the race and time between the departure of waves are also considered.</p></div>
+          <div class="panel bib" id="p-jmi-2023-bib"><pre><code>@article{Enguica2023modelling,
+  author  = {Enguiça, R. and Lopes, N. D.},
+  title   = {The modelling of urban running races},
+  journal = {Journal of Mathematics in Industry},
+  volume  = {13},
+  year    = {2023},
+  doi     = {10.1186/s13362-023-00136-3}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="p-camwa-2021" data-topics="flows">
+        <div class="pub-meta"><span class="vbadge t-flows">CAMWA</span><span class="yr">2021</span></div>
+        <div class="cite">
+          <span class="t">Continuous/discontinuous Galerkin approximations for a fourth-order nonlinear problem</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span>, H.&nbsp;B.&nbsp;de&nbsp;Oliveira</span>
+          <span class="ve"><em>Computers &amp; Mathematics with Applications</em> 97, 122–152</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="p-camwa-2021-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="p-camwa-2021-bib">BibTeX</button><a href="https://doi.org/10.1016/j.camwa.2021.05.034">DOI</a></div>
+          <div class="panel abs" id="p-camwa-2021-abs"><p>We introduce a Continuous/Discontinuous Galerkin Finite Element Method (CDFEM) with interior penalty terms to solve a nonlinear fourth-order problem that appears in the analysis of the confinement of fluid flows governed by the Stokes system. For the associated continuous and discrete problems, we prove the existence and uniqueness of weak solutions. Consistency, stability and convergence of the method are shown analytically. To show the applicability and robustness of the numerical model, several test cases are performed.</p></div>
+          <div class="panel bib" id="p-camwa-2021-bib"><pre><code>@article{Lopes2021continuous,
+  author  = {Lopes, N. D. and de Oliveira, H. B.},
+  title   = {Continuous/discontinuous {Galerkin} approximations for a fourth-order nonlinear problem},
+  journal = {Computers \&amp; Mathematics with Applications},
+  volume  = {97},
+  pages   = {122--152},
+  year    = {2021},
+  doi     = {10.1016/j.camwa.2021.05.034}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="p-nody-2015" data-topics="waves">
+        <div class="pub-meta"><span class="vbadge t-waves">NODY</span><span class="yr">2015</span></div>
+        <div class="cite">
+          <span class="t">Soliton-type and other travelling wave solutions for an improved class of nonlinear sixth-order Boussinesq equations</span>
+          <span class="au">P.&nbsp;J.&nbsp;S.&nbsp;Pereira, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, L.&nbsp;Trabucho</span>
+          <span class="ve"><em>Nonlinear Dynamics</em> 82(1–2), 783–818</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="p-nody-2015-bib">BibTeX</button><a href="https://doi.org/10.1007/s11071-015-2196-9">DOI</a></div>
+          <div class="panel bib" id="p-nody-2015-bib"><pre><code>@article{Pereira2015soliton,
+  author  = {Pereira, P. J. S. and Lopes, N. D. and Trabucho, L.},
+  title   = {Soliton-type and other travelling wave solutions for an improved class of nonlinear sixth-order {Boussinesq} equations},
+  journal = {Nonlinear Dynamics},
+  volume  = {82},
+  number  = {1--2},
+  pages   = {783--818},
+  year    = {2015},
+  doi     = {10.1007/s11071-015-2196-9}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="p-ijnmf-2012" data-topics="waves">
+        <div class="pub-meta"><span class="vbadge t-waves">IJNMF</span><span class="yr">2012</span></div>
+        <div class="cite">
+          <span class="t">A numerical analysis of a class of generalized Boussinesq-type equations using continuous/discontinuous FEM</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span>, P.&nbsp;J.&nbsp;S.&nbsp;Pereira, L.&nbsp;Trabucho</span>
+          <span class="ve"><em>International Journal for Numerical Methods in Fluids</em> 69(7), 1186–1218</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="p-ijnmf-2012-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="p-ijnmf-2012-bib">BibTeX</button><a href="https://doi.org/10.1002/fld.2631">DOI</a></div>
+          <div class="panel abs" id="p-ijnmf-2012-abs"><p>An improved class of Boussinesq systems of an arbitrary order using a wave surface elevation and velocity potential formulation is derived. Dissipative effects and wave generation due to a time-dependent varying seabed are included. Thus, high-order source functions are considered. For the reduction of the system order and maintenance of some dispersive characteristics of the higher-order models, an extra <em>O</em>(<em>μ</em><sup>2<em>n</em>+2</sup>) term (<em>n</em> ∈ ℕ) is included in the velocity potential expansion. We introduce a nonlocal continuous/discontinuous Galerkin FEM with inner penalty terms to calculate the numerical solutions of the improved fourth-order models. The discretization of the spatial variables is made using continuous <em>P</em><sub>2</sub> Lagrange elements. A predictor-corrector scheme with an initialization given by an explicit Runge–Kutta method is also used for the time-variable integration. Moreover, a CFL-type condition is deduced for the linear problem with a constant bathymetry. To demonstrate the applicability of the model, we considered several test cases. Improved stability is achieved.</p></div>
+          <div class="panel bib" id="p-ijnmf-2012-bib"><pre><code>@article{Lopes2012numericala,
+  author  = {Lopes, N. D. and Pereira, P. J. S. and Trabucho, L.},
+  title   = {A numerical analysis of a class of generalized {Boussinesq-type} equations using continuous/discontinuous {FEM}},
+  journal = {International Journal for Numerical Methods in Fluids},
+  volume  = {69},
+  number  = {7},
+  pages   = {1186--1218},
+  year    = {2012},
+  doi     = {10.1002/fld.2631}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <div class="pubgroup">
+    <h3 class="eyebrow">Book and book chapter</h3>
+    <ol class="pubs">
+      <li class="pub" id="b-fan-2019" data-topics="other">
+        <div class="pub-meta"><span class="vbadge t-other">Book</span><span class="yr">2019</span></div>
+        <div class="cite">
+          <span class="t">Fundamentos de Análise Numérica: com Python e R</span>
+          <span class="au">F.&nbsp;Correia&nbsp;dos&nbsp;Santos, J.&nbsp;Duarte, <span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve">2nd ed., Edições Sílabo, Lisboa. Textbook (in Portuguese) on numerical analysis with Python and R</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="b-fan-2019-bib">BibTeX</button></div>
+          <div class="panel bib" id="b-fan-2019-bib"><pre><code>@book{Santos2019fundamentos,
+  author    = {Correia dos Santos, F. and Duarte, J. and Lopes, N. D.},
+  title     = {Fundamentos de {Análise} {Numérica:} com {Python} e {R}},
+  edition   = {Second},
+  publisher = {Edições Sílabo},
+  address   = {Lisboa},
+  year      = {2019}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="c-fenics-2012" data-topics="waves">
+        <div class="pub-meta"><span class="vbadge t-waves">LNCSE</span><span class="yr">2012</span></div>
+        <div class="cite">
+          <span class="t">Improved Boussinesq equations for surface water waves</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span>, P.&nbsp;J.&nbsp;S.&nbsp;Pereira, L.&nbsp;Trabucho</span>
+          <span class="ve">In A.&nbsp;Logg, K.-A.&nbsp;Mardal, G.&nbsp;N.&nbsp;Wells (eds.), <em>Automated Solution of Differential Equations by the Finite Element Method</em> (the FEniCS book), Lecture Notes in Computational Science and Engineering 84, Springer, 471–504</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="c-fenics-2012-bib">BibTeX</button><a href="https://doi.org/10.1007/978-3-642-23099-8_25">DOI</a></div>
+          <div class="panel bib" id="c-fenics-2012-bib"><pre><code>@incollection{Lopes2012improved,
+  author    = {Lopes, N. D. and Pereira, P. J. S. and Trabucho, L.},
+  title     = {Improved {Boussinesq} equations for surface water waves},
+  editor    = {Logg, A. and Mardal, K.-A. and Wells, G. N.},
+  booktitle = {Automated Solution of Differential Equations by the Finite Element Method},
+  series    = {Lecture Notes in Computational Science and Engineering},
+  volume    = {84},
+  pages     = {471--504},
+  publisher = {Springer},
+  year      = {2012},
+  doi       = {10.1007/978-3-642-23099-8_25}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <div class="pubgroup">
+    <h3 class="eyebrow">Conference proceedings</h3>
+    <ol class="pubs">
+      <li class="pub" id="k-icnaam-2023" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">AIP CP</span><span class="yr">2023</span></div>
+        <div class="cite">
+          <span class="t">An introduction to scaffold design using topology optimization methods</span>
+          <span class="au">J.&nbsp;E.&nbsp;Marxen, T.&nbsp;Charters, S.&nbsp;Lopes, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, N.&nbsp;M.&nbsp;F.&nbsp;Alves, P.&nbsp;Pascoal-Faria</span>
+          <span class="ve"><em>AIP Conference Proceedings</em> 2849, 150002 (ICNAAM 2021)</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-icnaam-2023-bib">BibTeX</button><a href="https://doi.org/10.1063/5.0162364">DOI</a></div>
+          <div class="panel bib" id="k-icnaam-2023-bib"><pre><code>@inproceedings{Marxen2023introduction,
+  author    = {Marxen, J. E. and Charters, T. and Lopes, S. and Lopes, N. D. and Alves, N. M. F. and Pascoal-Faria, P.},
+  title     = {An introduction to scaffold design using topology optimization methods},
+  booktitle = {International Conference of Numerical Analysis and Applied Mathematics (ICNAAM 2021)},
+  series    = {AIP Conference Proceedings},
+  volume    = {2849},
+  pages     = {150002},
+  year      = {2023},
+  doi       = {10.1063/5.0162364}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="k-icce-2023" data-topics="coastal">
+        <div class="pub-meta"><span class="vbadge t-coastal">ICCE</span><span class="yr">2023</span></div>
+        <div class="cite">
+          <span class="t">Neural networks for optimization of an early warning system for moored ships in harbours</span>
+          <span class="au">L.&nbsp;V.&nbsp;Pinheiro, A.&nbsp;H.&nbsp;Gomes, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, S.&nbsp;Lopes, A.&nbsp;Prior, J.&nbsp;A.&nbsp;Santos, C.&nbsp;J.&nbsp;Fortes</span>
+          <span class="ve"><em>Coastal Engineering Proceedings</em> 37 (ICCE 2022), paper 60</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-icce-2023-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="k-icce-2023-bib">BibTeX</button><a href="https://doi.org/10.9753/icce.v37.papers.60">DOI</a></div>
+          <div class="panel abs" id="k-icce-2023-abs"><p>Within the BlueSafePort project, an early warning system (EWS) for moored ships in the port of Sines was developed. In order to improve the reliability and accuracy of the system, two neural networks (NN) were trained, using wave buoys measured datasets. Numerical models results for the wave propagation are adjusted and forecasts are improved. The trained neural networks were able to produce more accurate estimates for the significant wave height and mean wave period, at the buoy location, deployed in front of the Sines Port. The use of the new NN led to an overall reduction of the root mean square error of around 80 percent compared with SWAN numerical model simulations, thus reducing potential errors in subsequential calculations and alert levels issued by the system for the moored ships.</p></div>
+          <div class="panel bib" id="k-icce-2023-bib"><pre><code>@inproceedings{Pinheiro2023neural,
+  author    = {Pinheiro, L. V. and Gomes, A. H. and Lopes, N. D. and Lopes, S. and Prior, A. and Santos, J. A. and Fortes, C. J.},
+  title     = {Neural networks for optimization of an early warning system for moored ships in harbours},
+  booktitle = {Coastal Engineering Proceedings (ICCE 2022)},
+  volume    = {37},
+  pages     = {60},
+  year      = {2023},
+  doi       = {10.9753/icce.v37.papers.60}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="k-agua-2023a" data-topics="coastal">
+        <div class="pub-meta"><span class="vbadge t-coastal">Água</span><span class="yr">2023</span></div>
+        <div class="cite">
+          <span class="t">Uso de redes neuronais para melhoria de um sistema de alerta para riscos em portos</span>
+          <span class="au">L.&nbsp;Pinheiro, N.&nbsp;Morgado, A.&nbsp;Gomes, S.&nbsp;Lopes, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, A.&nbsp;Prior, J.&nbsp;Fortes</span>
+          <span class="ve"><em>16.º Congresso da Água</em>, LNEC, Lisboa</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-agua-2023a-bib">BibTeX</button></div>
+          <div class="panel bib" id="k-agua-2023a-bib"><pre><code>@inproceedings{Pinheiro2023uso,
+  author    = {Pinheiro, L. and Morgado, N. and Gomes, A. and Lopes, S. and Lopes, N. D. and Prior, A. and Fortes, J.},
+  title     = {Uso de redes neuronais para melhoria de um sistema de alerta para riscos em portos},
+  booktitle = {16.º Congresso da Água},
+  address   = {LNEC, Lisboa},
+  year      = {2023}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="k-agua-2023b" data-topics="coastal">
+        <div class="pub-meta"><span class="vbadge t-coastal">Água</span><span class="yr">2023</span></div>
+        <div class="cite">
+          <span class="t">Evolução do dano do manto protetor do quebra-mar de talude do porto da Ericeira: análise probabilística</span>
+          <span class="au">A.&nbsp;Mendonça, B.&nbsp;Machado, M.&nbsp;T.&nbsp;Reis, J.&nbsp;Santos, C.&nbsp;Fortes, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, A.&nbsp;Prior</span>
+          <span class="ve"><em>16.º Congresso da Água</em>, LNEC, Lisboa</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-agua-2023b-bib">BibTeX</button></div>
+          <div class="panel bib" id="k-agua-2023b-bib"><pre><code>@inproceedings{Mendonca2023evolucao,
+  author    = {Mendonça, A. and Machado, B. and Reis, M. T. and Santos, J. and Fortes, C. and Lopes, N. D. and Prior, A.},
+  title     = {Evolução do dano do manto protetor do quebra-mar de talude do porto da {Ericeira:} análise probabilística},
+  booktitle = {16.º Congresso da Água},
+  address   = {LNEC, Lisboa},
+  year      = {2023}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="k-mefte-2012" data-topics="waves">
+        <div class="pub-meta"><span class="vbadge t-waves">MEFTE</span><span class="yr">2012</span></div>
+        <div class="cite">
+          <span class="t">A numerical analysis of a class of KdV-BBM equations using continuous/discontinuous Galerkin finite element method</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span>, P.&nbsp;J.&nbsp;S.&nbsp;Pereira, L.&nbsp;Trabucho</span>
+          <span class="ve"><em>MEFTE 2012 — IV Conferência Nacional em Mecânica dos Fluidos, Termodinâmica e Energia</em>, LNEC, Lisboa</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-mefte-2012-bib">BibTeX</button></div>
+          <div class="panel bib" id="k-mefte-2012-bib"><pre><code>@inproceedings{Lopes2012numericalb,
+  author    = {Lopes, N. D. and Pereira, P. J. S. and Trabucho, L.},
+  title     = {A numerical analysis of a class of {KdV-BBM} equations using continuous/discontinuous {Galerkin} finite element method},
+  booktitle = {MEFTE 2012 --- IV Conferência Nacional em Mecânica dos Fluidos, Termodinâmica e Energia},
+  address   = {LNEC, Lisboa},
+  year      = {2012}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="k-spm-2011" data-topics="waves">
+        <div class="pub-meta"><span class="vbadge t-waves">SPM</span><span class="yr">2011</span></div>
+        <div class="cite">
+          <span class="t">Um método numérico para uma classe de equações de Boussinesq para ondas de superfície com batimetria dependente do tempo</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span>, P.&nbsp;J.&nbsp;S.&nbsp;Pereira, L.&nbsp;Trabucho</span>
+          <span class="ve"><em>Boletim da Sociedade Portuguesa de Matemática</em>, Encontro Nacional da SPM 2010, 42–46</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-spm-2011-bib">BibTeX</button></div>
+          <div class="panel bib" id="k-spm-2011-bib"><pre><code>@article{Lopes2011metodo,
+  author  = {Lopes, N. D. and Pereira, P. J. S. and Trabucho, L.},
+  title   = {Um método numérico para uma classe de equações de {Boussinesq} para ondas de superfície com batimetria dependente do tempo},
+  journal = {Boletim da Sociedade Portuguesa de Matemática},
+  pages   = {42--46},
+  note    = {Encontro Nacional da SPM 2010},
+  year    = {2011}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="k-eccomas-2010" data-topics="waves">
+        <div class="pub-meta"><span class="vbadge t-waves">ECCOMAS</span><span class="yr">2010</span></div>
+        <div class="cite">
+          <span class="t">A C/DG-FEM solution of an improved Boussinesq system for surface water waves</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span>, P.&nbsp;J.&nbsp;S.&nbsp;Pereira, L.&nbsp;Trabucho</span>
+          <span class="ve"><em>Proceedings of the Fifth European Conference on Computational Fluid Dynamics, ECCOMAS CFD 2010</em>, Lisbon</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-eccomas-2010-bib">BibTeX</button></div>
+          <div class="panel bib" id="k-eccomas-2010-bib"><pre><code>@inproceedings{Lopes2010c,
+  author    = {Lopes, N. D. and Pereira, P. J. S. and Trabucho, L.},
+  title     = {A {C/DG-FEM} solution of an improved {Boussinesq} system for surface water waves},
+  booktitle = {Proceedings of the Fifth European Conference on Computational Fluid Dynamics, ECCOMAS CFD 2010},
+  address   = {Lisbon},
+  year      = {2010}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="k-cmce-2004" data-topics="other">
+        <div class="pub-meta"><span class="vbadge t-other">CMCE</span><span class="yr">2004</span></div>
+        <div class="cite">
+          <span class="t">Aplicação do método dos elementos finitos na análise de uma classe de problemas de convecção-difusão</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span>, L.&nbsp;Trabucho</span>
+          <span class="ve"><em>Congresso de Métodos Computacionais em Engenharia</em>, LNEC, Lisboa</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="k-cmce-2004-bib">BibTeX</button></div>
+          <div class="panel bib" id="k-cmce-2004-bib"><pre><code>@inproceedings{Lopes2004aplicacaoa,
+  author    = {Lopes, N. D. and Trabucho, L.},
+  title     = {Aplicação do método dos elementos finitos na análise de uma classe de problemas de convecção-difusão},
+  booktitle = {Congresso de Métodos Computacionais em Engenharia},
+  address   = {LNEC, Lisboa},
+  year      = {2004}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <div class="pubgroup">
+    <h3 class="eyebrow" id="reports">Reports from industry problems</h3>
+    <ol class="pubs">
+      <li class="pub" id="r-wine-2026" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">MIIR</span><span class="yr">2026</span></div>
+        <div class="cite">
+          <span class="t">Enhancing wine sensory evaluation: develop a robust system for consistent and accurate taster scores</span>
+          <span class="au">A.&nbsp;Costa, A.&nbsp;Gavina, A.&nbsp;Mota, A.&nbsp;Moura, C.&nbsp;Dias, L.&nbsp;Afonso, <span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve"><em>Mathematics in Industry Reports</em>. ESGI&nbsp;181, problem from the Vinho Verde Viticulture Commission</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="r-wine-2026-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="r-wine-2026-bib">BibTeX</button><a href="https://doi.org/10.33774/miir-2026-vt4px">DOI</a></div>
+          <div class="panel abs" id="r-wine-2026-abs"><p>This report addresses a challenge proposed by Comissão de Viticultura da Região dos Vinhos Verdes (CVRVV) at the 181st European Study Group in Industry. Here we investigate the refinement of the sensory evaluation methodology of wine employed by the CVRVV laboratory, with a focus on improving statistical rigor and tasters' assessments. We perform a detailed statistical analysis of the sensory evaluation data, including measures of central tendency, dispersion, and distribution, to identify sources of variability. We also develop a script to assess tasters consistency by analyzing deviations from the panel median and repeatability across tests. These approaches improve the aggregation of sensory data, detect errors, and establish sound statistical criteria for sample validation and test series acceptance, ensuring more precise and reliable sensory analysis.</p></div>
+          <div class="panel bib" id="r-wine-2026-bib"><pre><code>@techreport{Costa2026enhancing,
+  author      = {Costa, A. and Gavina, A. and Mota, A. and Moura, A. and Dias, C. and Afonso, L. and Lopes, N. D.},
+  title       = {Enhancing wine sensory evaluation: develop a robust system for consistent and accurate taster scores},
+  institution = {Mathematics in Industry Reports},
+  note        = {ESGI 181, problem from the Vinho Verde Viticulture Commission},
+  year        = {2026},
+  doi         = {10.33774/miir-2026-vt4px}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="r-soles-2024" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">MIIR</span><span class="yr">2024</span></div>
+        <div class="cite">
+          <span class="t">Optimization of sole production scheduling</span>
+          <span class="au">A.&nbsp;Moura, I.&nbsp;C.&nbsp;Lopes, J.&nbsp;Matias, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, R.&nbsp;Enguiça</span>
+          <span class="ve"><em>Mathematics in Industry Reports</em>. ESGI&nbsp;174, problem from SoftIdea</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="r-soles-2024-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="r-soles-2024-bib">BibTeX</button><a href="https://doi.org/10.33774/miir-2024-zhmg5">DOI</a></div>
+          <div class="panel abs" id="r-soles-2024-abs"><p>This report addresses a challenge proposed at the 174th European Study Group in Industry to develop an algorithm to optimize processes on rubber soles manufacturing. The objective is to create an order distribution plan that maximizes efficiency, reduces setup times synchronizing molds changing, ensuring that delivery dates are met. This problem can be classified as a parallel machines scheduling problem with sequence dependent setup times. This work presents an heuristic that minimizes the makespan, accounting for the sequence dependent setup times, divided into two steps: (i) a client’s order will be partitioned into sets corresponding to the assigned slots; (ii) reorder the molds within each position of the press, so that setup times are simultaneous. We find solutions for real data, for cases with double and triple molds for a given size. Results show that synchronization of setup times due to heating and mold changes decrease significantly the makespan.</p></div>
+          <div class="panel bib" id="r-soles-2024-bib"><pre><code>@techreport{Moura2024optimization,
+  author      = {Moura, A. and Lopes, I. C. and Matias, J. and Lopes, N. D. and Enguiça, R.},
+  title       = {Optimization of sole production scheduling},
+  institution = {Mathematics in Industry Reports},
+  note        = {ESGI 174, problem from SoftIdea},
+  year        = {2024},
+  doi         = {10.33774/miir-2024-zhmg5}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="r-solvit-2023" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">MIIR</span><span class="yr">2023</span></div>
+        <div class="cite">
+          <span class="t">Optimal configuration for communication antenna along a railway line</span>
+          <span class="au">A.&nbsp;Araújo, J.&nbsp;O.&nbsp;Cerdeira, E.&nbsp;Costa&nbsp;e&nbsp;Silva, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, A.&nbsp;Moura</span>
+          <span class="ve"><em>Mathematics in Industry Reports</em>. ESGI&nbsp;161, problem from Solvit</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="r-solvit-2023-abs">Abstract</button><button type="button" class="tog" aria-expanded="false" aria-controls="r-solvit-2023-bib">BibTeX</button><a href="https://doi.org/10.33774/miir-2023-tkf3c">DOI</a></div>
+          <div class="panel abs" id="r-solvit-2023-abs"><p>Solvit’s main task is to provide and maintain stable signal coverage along railway tracks, ensuring quality communications. To do this, the company should design a suitable antenna network in order to guarantee good signal coverage while reducing the costs associated with the entire network. In this report we formulate the problem as 0/1 linear optimization models, and report computational results obtained using the models on real data provided by the company.</p></div>
+          <div class="panel bib" id="r-solvit-2023-bib"><pre><code>@techreport{Araujo2023optimal,
+  author      = {Araújo, A. and Cerdeira, J. O. and Costa e Silva, E. and Lopes, N. D. and Moura, A.},
+  title       = {Optimal configuration for communication antenna along a railway line},
+  institution = {Mathematics in Industry Reports},
+  note        = {ESGI 161, problem from Solvit},
+  year        = {2023},
+  doi         = {10.33774/miir-2023-tkf3c}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="r-vipex-2019" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">ESGI</span><span class="yr">2019</span></div>
+        <div class="cite">
+          <span class="t">Vipex container lid</span>
+          <span class="au">N.&nbsp;Ferreira, N.&nbsp;Alves, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, P.&nbsp;Faria, R.&nbsp;Barreira</span>
+          <span class="ve">Reports of the Portuguese Study Groups, ESGI&nbsp;155, Leiria</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="r-vipex-2019-bib">BibTeX</button></div>
+          <div class="panel bib" id="r-vipex-2019-bib"><pre><code>@techreport{Ferreira2019vipex,
+  author      = {Ferreira, N. and Alves, N. and Lopes, N. D. and Faria, P. and Barreira, R.},
+  title       = {Vipex container lid},
+  institution = {Reports of the Portuguese Study Groups},
+  note        = {ESGI 155, Leiria},
+  year        = {2019}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="r-lap2go-2018" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">ESGI</span><span class="yr">2018</span></div>
+        <div class="cite">
+          <span class="t">Managing start waves for mass running events</span>
+          <span class="au">P.&nbsp;Amaral, S.&nbsp;Barbeiro, R.&nbsp;Barreira, M.&nbsp;Cruz, R.&nbsp;Enguiça, <span class="me">N.&nbsp;D.&nbsp;Lopes</span>, M.&nbsp;McPhail, F.&nbsp;Wechsung</span>
+          <span class="ve">Reports of the Portuguese Study Groups, ESGI&nbsp;140 (problem from Lap2Go), Barreiro</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="r-lap2go-2018-bib">BibTeX</button></div>
+          <div class="panel bib" id="r-lap2go-2018-bib"><pre><code>@techreport{Amaral2018managing,
+  author      = {Amaral, P. and Barbeiro, S. and Barreira, R. and Cruz, M. and Enguiça, R. and Lopes, N. D. and McPhail, M. and Wechsung, F.},
+  title       = {Managing start waves for mass running events},
+  institution = {Reports of the Portuguese Study Groups},
+  note        = {ESGI 140 (problem from Lap2Go), Barreiro},
+  year        = {2018}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="r-wurth-2015" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">Report</span><span class="yr">2015</span></div>
+        <div class="cite">
+          <span class="t">Profitability optimization in supply chain</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve">Technical report for Würth Portugal, Department of Mathematics, ISEL</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="r-wurth-2015-bib">BibTeX</button></div>
+          <div class="panel bib" id="r-wurth-2015-bib"><pre><code>@techreport{Lopes2015profitability,
+  author      = {Lopes, N. D.},
+  title       = {Profitability optimization in supply chain},
+  institution = {Department of Mathematics, ISEL},
+  note        = {Technical report for Würth Portugal},
+  year        = {2015}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="r-rotor-2008" data-topics="industry">
+        <div class="pub-meta"><span class="vbadge t-industry">ESGI</span><span class="yr">2008</span></div>
+        <div class="cite">
+          <span class="t">Cooling of a rotor</span>
+          <span class="au">I.&nbsp;Cruz, P.&nbsp;Freitas, <span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve">Reports of the Portuguese Study Groups, ESGI&nbsp;65 (problem from BioSafe), University of Porto</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="r-rotor-2008-bib">BibTeX</button></div>
+          <div class="panel bib" id="r-rotor-2008-bib"><pre><code>@techreport{Cruz2008cooling,
+  author      = {Cruz, I. and Freitas, P. and Lopes, N. D.},
+  title       = {Cooling of a rotor},
+  institution = {Reports of the Portuguese Study Groups},
+  note        = {ESGI 65 (problem from BioSafe), University of Porto},
+  year        = {2008}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <div class="pubgroup">
+    <h3 class="eyebrow" id="theses">Theses</h3>
+    <ol class="pubs">
+      <li class="pub" id="t-phd-2014" data-topics="waves">
+        <div class="pub-meta"><span class="vbadge t-waves">PhD</span><span class="yr">2014</span></div>
+        <div class="cite">
+          <span class="t">Métodos analíticos e numéricos do tipo elementos finitos contínuos e contínuos/descontínuos para o estudo de modelos de Boussinesq melhorados para a propagação de ondas</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve">PhD thesis, Universidade Nova de Lisboa</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="t-phd-2014-bib">BibTeX</button><a href="https://hdl.handle.net/10362/12197">RUN</a></div>
+          <div class="panel bib" id="t-phd-2014-bib"><pre><code>@phdthesis{Lopes2014metodos,
+  author = {Lopes, N. D.},
+  title  = {Métodos analíticos e numéricos do tipo elementos finitos contínuos e contínuos/descontínuos para o estudo de modelos de {Boussinesq} melhorados para a propagação de ondas},
+  school = {Universidade Nova de Lisboa},
+  year   = {2014},
+  url    = {https://hdl.handle.net/10362/12197}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+      <li class="pub" id="t-msc-2004" data-topics="other">
+        <div class="pub-meta"><span class="vbadge t-other">MSc</span><span class="yr">2004</span></div>
+        <div class="cite">
+          <span class="t">Aplicação do método dos elementos finitos na análise de uma classe de problemas de convecção-difusão</span>
+          <span class="au"><span class="me">N.&nbsp;D.&nbsp;Lopes</span></span>
+          <span class="ve">MSc thesis, Universidade de Lisboa</span>
+          <div class="actions"><button type="button" class="tog" aria-expanded="false" aria-controls="t-msc-2004-bib">BibTeX</button></div>
+          <div class="panel bib" id="t-msc-2004-bib"><pre><code>@mastersthesis{Lopes2004aplicacaob,
+  author = {Lopes, N. D.},
+  title  = {Aplicação do método dos elementos finitos na análise de uma classe de problemas de convecção-difusão},
+  school = {Universidade de Lisboa},
+  year   = {2004}
+}</code></pre><button type="button" class="copy">Copy</button></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <!-- pubs:end -->
+  <p class="more"><a href="#wip">Papers under review →</a></p>
+</section>
+
+<!-- ============================================================= PROJECTS -->
+<section id="projects" aria-labelledby="projects-h">
+  <h2 id="projects-h">Funded projects</h2>
+  <ol class="entries">
+    <li><span class="yr">2022–23</span><div class="cite"><span class="t">3A — AdaptiveAllocApp</span>Polytechnic University of Lisbon IDI&amp;CA project IPL/2022/3A_ISEL. Team member.</div></li>
+    <li><span class="yr">2019–20</span><div class="cite"><span class="t">MathMould — analytical and numerical methods for water-assisted injection in multi-tubular moulds</span>Polytechnic University of Lisbon IDI&amp;CA project IPL/2019/MathMould_ISEL. Coordinator.</div></li>
+    <li><span class="yr">2005–09</span><div class="cite"><span class="t">Asymptotic analysis applied to the mechanics of continuous media</span>FCT project POCI/MAT/60587/2004. Team member.</div></li>
+  </ol>
+</section>
+
+<!-- ============================================================= SOFTWARE -->
+<section id="software" aria-labelledby="sw-h">
+  <h2 id="sw-h">Software</h2>
+  <p>Research code that accompanies the papers, written in Julia for the recent work, with archived releases on Zenodo.</p>
+  <ul class="software">
+    <li>
+      <h3>DOLFWAVE</h3>
+      <p class="meta">C++ / Python · FEniCS · 2010–2015</p>
+      <p>Library for surface water wave problems: Boussinesq-type models discretized with continuous and continuous/discontinuous Galerkin methods. Written during my PhD, under the supervision of P.&nbsp;J.&nbsp;S.&nbsp;Pereira and L.&nbsp;Trabucho. A Julia port is under way (see <a href="#w-dolfwave-julia">work in progress</a>).</p>
+      <span class="links"><a href="https://launchpad.net/dolfwave">Launchpad</a><a href="#c-fenics-2012">FEniCS book chapter</a></span>
+    </li>
+    <li>
+      <h3>RailwayOptSitePos</h3>
+      <p class="meta">Julia · DrWatson · MILP</p>
+      <p>0/1 linear optimization model for choosing antenna sites and types along a railway line at minimum cost, subject to signal-coverage requirements.</p>
+      <span class="links"><a href="https://github.com/ndlopes-github/RailwayOptSitePos">GitHub</a><a href="https://doi.org/10.5281/zenodo.17725507">Zenodo</a><a href="#p-4or-2025">Paper</a></span>
+    </li>
+    <li>
+      <h3>ShoeOptSetupTime</h3>
+      <p class="meta">Julia · MILP · metaheuristics</p>
+      <p>Parallel-machine scheduling with simultaneous interruptions in shoe-sole production: MILP formulations, a split–solve–merge heuristic, GRASP, genetic algorithm and simulated annealing.</p>
+      <span class="links"><a href="https://github.com/ndlopes-github/ShoeOptSetupTime">GitHub</a><a href="https://doi.org/10.5281/zenodo.20642118">Zenodo</a></span>
+    </li>
+    <li>
+      <h3>BoostRace</h3>
+      <p class="meta">Julia · simulation</p>
+      <p>Model of urban running races: wave starts, course width and elevation, and runner congestion, for races with thousands of participants.</p>
+      <span class="links"><a href="https://github.com/ndlopes-github/BoostRace">GitHub</a><a href="https://doi.org/10.5281/zenodo.17654963">Zenodo</a><a href="#p-jmi-2023">Paper</a></span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============================================================== GALLERY -->
+<section id="gallery" aria-labelledby="gallery-h">
+  <h2 id="gallery-h">Gallery</h2>
+  <p>Simulations from my work since 2003: Boussinesq-type wave models and DOLFWAVE, incompressible Navier–Stokes benchmarks computed with FreeFem++, and the Tagus estuary model from my MSc. Most were first shown on my 2007–2011 web pages. Long runs are sped up to at most 30&nbsp;s. More are on <a href="https://www.youtube.com/channel/UCFvEkGMsP_IoCOwNkKcReyA/videos">YouTube</a>.</p>
+  <div class="filters" role="group" aria-label="Filter the gallery" data-scope="#gallery">
+    <button type="button" class="chip on" data-topic="all" aria-pressed="true">All</button>
+    <button type="button" class="chip" data-topic="waves" aria-pressed="false">Water waves</button>
+    <button type="button" class="chip" data-topic="flows" aria-pressed="false">Navier–Stokes flows</button>
+    <button type="button" class="chip" data-topic="tagus" aria-pressed="false">Tagus estuary</button>
+  </div>
+  <!-- gallery:begin -->
+  <div class="group">
+  <h3 class="eyebrow">Water waves</h3>
+  <div class="tiles">
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="380" height="320"
+        poster="media/gallery/ringtest.jpg" aria-label="Animation: Ring test (Liu and Woo, 2004)"><source src="media/gallery/ringtest.mp4" type="video/mp4"></video></div>
+      <figcaption>Ring test (Liu and Woo, 2004)<span class="m">DOLFWAVE · C/DG finite elements</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="304"
+        poster="media/gallery/toytsunami-basin.jpg" aria-label="Animation: Toy tsunami: a ring wave reflecting in a square basin"><source src="media/gallery/toytsunami-basin.mp4" type="video/mp4"></video></div>
+      <figcaption>Toy tsunami: a ring wave reflecting in a square basin<span class="m">DOLFWAVE</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="372" height="244"
+        poster="media/gallery/harbour.jpg" aria-label="Animation: Waves generated at the boundary entering a harbour"><source src="media/gallery/harbour.mp4" type="video/mp4"></video></div>
+      <figcaption>Waves generated at the boundary entering a harbour<span class="m">DOLFWAVE · Zhao–Cheng–Teng model · 2009</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="410" height="290"
+        poster="media/gallery/bathymetry-zct.jpg" aria-label="Animation: Wave propagation over variable bathymetry"><source src="media/gallery/bathymetry-zct.mp4" type="video/mp4"></video></div>
+      <figcaption>Wave propagation over variable bathymetry<span class="m">DOLFWAVE · Zhao–Cheng–Teng model</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="460" height="310"
+        poster="media/gallery/bottom-displacement.jpg" aria-label="Animation: Wave generated by a horizontal displacement of the bottom"><source src="media/gallery/bottom-displacement.mp4" type="video/mp4"></video></div>
+      <figcaption>Wave generated by a horizontal displacement of the bottom<span class="m">2016 · <a href="https://www.youtube.com/watch?v=BotK383Xk7A">YouTube</a></span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate dark"><video class="clip" muted loop playsinline controls preload="none" width="372" height="266"
+        poster="media/gallery/tsunami-velocities.jpg" aria-label="Animation: Toy tsunami along the Portuguese coast: surface velocities"><source src="media/gallery/tsunami-velocities.mp4" type="video/mp4"></video></div>
+      <figcaption>Toy tsunami along the Portuguese coast: surface velocities<span class="m">2016 · <a href="https://www.youtube.com/watch?v=0EJ86q3F9fE">YouTube</a></span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate dark"><video class="clip" muted loop playsinline controls preload="none" width="400" height="304"
+        poster="media/gallery/tsunami-elevation.jpg" aria-label="Animation: Toy tsunami: surface elevation"><source src="media/gallery/tsunami-elevation.mp4" type="video/mp4"></video></div>
+      <figcaption>Toy tsunami: surface elevation<span class="m">2016 · <a href="https://www.youtube.com/watch?v=86FZPF3LhxE">YouTube</a></span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="460" height="280"
+        poster="media/gallery/pillar.jpg" aria-label="Animation: Wave with a pillar in the domain, reflecting walls"><source src="media/gallery/pillar.mp4" type="video/mp4"></video></div>
+      <figcaption>Wave with a pillar in the domain, reflecting walls<span class="m">Boussinesq-type model · FEM · 2007</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="408"
+        poster="media/gallery/bathymetry-2007.jpg" aria-label="Animation: Wave over variable bathymetry"><source src="media/gallery/bathymetry-2007.mp4" type="video/mp4"></video></div>
+      <figcaption>Wave over variable bathymetry<span class="m">Zhao–Cheng–Teng model · FEM · 2007</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="468" height="404"
+        poster="media/gallery/nonsymmetric.jpg" aria-label="Animation: Wave in a non-symmetric domain"><source src="media/gallery/nonsymmetric.mp4" type="video/mp4"></video></div>
+      <figcaption>Wave in a non-symmetric domain<span class="m">Boussinesq-type model · FEM · 2007</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="360"
+        poster="media/gallery/bathymetry-nonsymmetric.jpg" aria-label="Animation: Wave over variable bathymetry in a non-symmetric domain"><source src="media/gallery/bathymetry-nonsymmetric.mp4" type="video/mp4"></video></div>
+      <figcaption>Wave over variable bathymetry in a non-symmetric domain<span class="m">Boussinesq-type model · FEM · 2007</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="334"
+        poster="media/gallery/wu-fkdv.jpg" aria-label="Animation: Wu's forced-KdV example: fourth- vs second-order models"><source src="media/gallery/wu-fkdv.mp4" type="video/mp4"></video></div>
+      <figcaption>Wu's forced-KdV example: fourth- vs second-order models<span class="m">DOLFWAVE · C/DG finite elements</span></figcaption>
+    </figure>
+  </div>
+  </div>
+  <div class="group">
+  <h3 class="eyebrow">Incompressible Navier–Stokes flows</h3>
+  <div class="tiles">
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="122"
+        poster="media/gallery/cylinder-re200.jpg" aria-label="Animation: Flow past a cylinder, Re = 200"><source src="media/gallery/cylinder-re200.mp4" type="video/mp4"></video></div>
+      <figcaption>Flow past a cylinder, Re = 200<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="94"
+        poster="media/gallery/rotating-cylinder-re250.jpg" aria-label="Animation: Flow past a rotating cylinder, Re = 250"><source src="media/gallery/rotating-cylinder-re250.mp4" type="video/mp4"></video></div>
+      <figcaption>Flow past a rotating cylinder, Re = 250<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="388"
+        poster="media/gallery/naca-re1e3.jpg" aria-label="Animation: NACA0012 airfoil at 16°, Re = 10³"><source src="media/gallery/naca-re1e3.mp4" type="video/mp4"></video></div>
+      <figcaption>NACA0012 airfoil at 16°, Re = 10³<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="406" height="326"
+        poster="media/gallery/naca-re1e4.jpg" aria-label="Animation: NACA0012 airfoil at 16°, Re = 10⁴"><source src="media/gallery/naca-re1e4.mp4" type="video/mp4"></video></div>
+      <figcaption>NACA0012 airfoil at 16°, Re = 10⁴<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="366" height="372"
+        poster="media/gallery/wall-re1e5.jpg" aria-label="Animation: Flow around a vertical wall, Re = 10⁵: vorticity"><source src="media/gallery/wall-re1e5.mp4" type="video/mp4"></video></div>
+      <figcaption>Flow around a vertical wall, Re = 10⁵: vorticity<span class="m">FreeFem++ · grad-div stabilization · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="484"
+        poster="media/gallery/double-jet.jpg" aria-label="Animation: Double jet in a square (Glowinski, 2003)"><source src="media/gallery/double-jet.mp4" type="video/mp4"></video></div>
+      <figcaption>Double jet in a square (Glowinski, 2003)<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="480"
+        poster="media/gallery/cavity-re7500.jpg" aria-label="Animation: Lid-driven cavity, Re = 7500"><source src="media/gallery/cavity-re7500.mp4" type="video/mp4"></video></div>
+      <figcaption>Lid-driven cavity, Re = 7500<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="480"
+        poster="media/gallery/cavity-twowalls.jpg" aria-label="Animation: Cavity driven by two walls, Re = 1000"><source src="media/gallery/cavity-twowalls.mp4" type="video/mp4"></video></div>
+      <figcaption>Cavity driven by two walls, Re = 1000<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="100"
+        poster="media/gallery/backstep-re500.jpg" aria-label="Animation: Backward-facing step, Re = 500"><source src="media/gallery/backstep-re500.mp4" type="video/mp4"></video></div>
+      <figcaption>Backward-facing step, Re = 500<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="80"
+        poster="media/gallery/channel-obstacle-re150.jpg" aria-label="Animation: Channel with an obstacle, Re = 150"><source src="media/gallery/channel-obstacle-re150.mp4" type="video/mp4"></video></div>
+      <figcaption>Channel with an obstacle, Re = 150<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="410" height="180"
+        poster="media/gallery/chamber-square.jpg" aria-label="Animation: Flow through a square chamber, Re ≈ 10⁴: vorticity"><source src="media/gallery/chamber-square.mp4" type="video/mp4"></video></div>
+      <figcaption>Flow through a square chamber, Re ≈ 10⁴: vorticity<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="flows">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="428" height="124"
+        poster="media/gallery/pipe-bulge.jpg" aria-label="Animation: Flow through a pipe with an aneurysm-like bulge"><source src="media/gallery/pipe-bulge.mp4" type="video/mp4"></video></div>
+      <figcaption>Flow through a pipe with an aneurysm-like bulge<span class="m">FreeFem++ · 2007–08</span></figcaption>
+    </figure>
+  </div>
+  </div>
+  <div class="group">
+  <h3 class="eyebrow">Transport in the Tagus estuary</h3>
+  <div class="tiles">
+    <figure class="tile" data-topics="tagus">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="370" height="390"
+        poster="media/gallery/tagus-fine.jpg" aria-label="Animation: Pollutant transport on a finer mesh (10 736 nodes)"><source src="media/gallery/tagus-fine.mp4" type="video/mp4"></video></div>
+      <figcaption>Pollutant transport on a finer mesh (10 736 nodes)<span class="m">MSc work · 2003–04</span></figcaption>
+    </figure>
+  </div>
+  </div>
+  <!-- gallery:end -->
+</section>
+
+<!-- ================================================================ TALKS -->
+<section id="talks" aria-labelledby="talks-h">
+  <h2 id="talks-h">Talks</h2>
+
+  <h3 class="eyebrow">Conferences and seminars</h3>
+  <ol class="entries">
+    <li><span class="yr">2024</span><div class="cite"><span class="t">CD-FEM solutions of fourth-order nonlinear models for the confinement of fluid flows</span>ICMASC24 — Mathematical Analysis and Applications in Science and Engineering, ISEP, Porto.</div></li>
+    <li><span class="yr">2022</span><div class="cite"><span class="t">Alguns métodos e resultados numéricos sobre o confinamento de um fluido, a injecção assistida por água num molde e corridas urbanas</span>Physics and Mathematics Seminar, ISEL, Lisbon.</div></li>
+    <li><span class="yr">2021</span><div class="cite"><span class="t">C/DG-FEM solutions of a fourth-order nonlinear model for the confinement of fluid flows</span>Encontro Nacional da Sociedade Portuguesa de Matemática 2021. Joint work with H.&nbsp;B.&nbsp;de&nbsp;Oliveira.</div></li>
+    <li><span class="yr">2017</span><div class="cite"><span class="t">Analytical and numerical methods for some improved Boussinesq models for surface water waves</span>Analysis Seminar, Centro de Matemática e Aplicações, FCT NOVA, Almada.</div></li>
+    <li><span class="yr">2015</span><div class="cite"><span class="t">Analytical and numerical methods of the type FEM-C/D for improved Boussinesq models</span>Applied Mathematics and Numerical Analysis Seminar, Instituto Superior Técnico, Lisbon.</div></li>
+  </ol>
+
+  <details>
+    <summary>Earlier talks, 2001–2012</summary>
+    <ol class="entries">
+      <li><span class="yr">2012</span><div class="cite"><span class="t">FEM solutions of some Boussinesq-type models for surface water waves</span>Seminar, Centro de Matemática da Universidade de Coimbra.</div></li>
+      <li><span class="yr">2012</span><div class="cite"><span class="t">A numerical analysis of a class of KdV-BBM equations using continuous/discontinuous Galerkin FEM</span>MEFTE 2012, LNEC, Lisbon.</div></li>
+      <li><span class="yr">2011</span><div class="cite"><span class="t">Solutions of some improved Boussinesq-type models for surface water waves using finite element methods</span>Recent Trends in Hyperbolic and Related PDEs, Instituto para a Investigação Interdisciplinar, Universidade de Lisboa.</div></li>
+      <li><span class="yr">2011</span><div class="cite"><span class="t">A C/DG-FEM solution of an improved fourth-order Boussinesq model for surface water waves</span><span class="badge">Invited</span><br>First European Meeting of PhD Students in Mathematics, LAMFA, Université de Picardie Jules Verne, Amiens.</div></li>
+      <li><span class="yr">2011</span><div class="cite"><span class="t">DOLFWAVE: a FEniCS application for water waves simulation</span><span class="badge">Invited</span><br>SIAM Conference on Mathematical and Computational Issues in the Geosciences (GS11), minisymposium on reproducible science and open-source software, Long Beach, CA.</div></li>
+      <li><span class="yr">2010</span><div class="cite"><span class="t">Um método numérico para uma classe de equações de Boussinesq para ondas de superfície com batimetria dependente do tempo</span>Encontro Nacional da SPM 2010, Leiria.</div></li>
+      <li><span class="yr">2010</span><div class="cite"><span class="t">A C/DG-FEM solution of an improved Boussinesq system for surface water waves</span>ECCOMAS CFD 2010, Lisbon.</div></li>
+      <li><span class="yr">2010</span><div class="cite"><span class="t">DOLFWAVE — use of FEniCS for surface waves modelling</span><span class="badge">Invited</span><br>CBC Workshop on Tsunami Modelling, Simula Research Laboratory, Oslo.</div></li>
+      <li><span class="yr">2009</span><div class="cite"><span class="t">Aplicações do método dos elementos finitos a uma classe de sistemas de Boussinesq</span><span class="badge">Invited</span><br>Seminar, Centro de Matemática e Aplicações, Universidade Nova de Lisboa.</div></li>
+      <li><span class="yr">2004</span><div class="cite"><span class="t">Aplicação do método dos elementos finitos na análise de uma classe de problemas convecção-difusão</span>Congresso de Métodos Computacionais em Engenharia, LNEC, Lisbon.</div></li>
+      <li><span class="yr">2003</span><div class="cite"><span class="t">Análise numérica de um modelo de convecção-difusão: aplicação ao estuário do Tejo</span>Seminar, CMAF, Universidade de Lisboa.</div></li>
+      <li><span class="yr">2001</span><div class="cite"><span class="t">O método dos elementos finitos numa equação de convecção-difusão</span>Seminar, CMAF, Universidade de Lisboa.</div></li>
+    </ol>
+  </details>
+
+  <h3 class="eyebrow">Outreach</h3>
+  <ul class="plain">
+    <li><em>Mathematics in big wave surfing: forecasting and modeling</em> (with N.&nbsp;Santos), invited lecture, SPM Summer School &amp; MatOeste 2017 “Mathematics of the Sea”, Polytechnic of Leiria, 2017.</li>
+    <li><em>Some analytical and numerical models for the generation and propagation of surface ocean waves</em>, “Our Oceans, Our Future”, ISEL, 2017.</li>
+    <li><em>Waves, pollutants and turbulence</em>: ExpoFCT 2010, Matemática na FCT 2011, MatNova 2012 (FCT NOVA), and ISEL Open Week 2018.</li>
+  </ul>
+</section>
+
+<!-- ========================================================== SUPERVISION -->
+<section id="supervision" aria-labelledby="sup-h">
+  <h2 id="sup-h">Supervision</h2>
+  <p>Internships and theses in industrial mathematics, mostly in ISEL’s BSc in Mathematics Applied to Technology and Business (LMATE), all co-supervised with the host institution.</p>
+  <ol class="entries">
+    <li><span class="yr">2025</span><div class="cite"><span class="t">Estudo sobre o índice de conforto acústico (IAC) em ventiladores de ar automóvel</span>João Domingos — Iber-Oleff · LMATE internship <span class="note">with M.&nbsp;Fontul (Iber-Oleff) and T.&nbsp;Charters de Azevedo (ISEL)</span></div></li>
+    <li><span class="yr">2024</span><div class="cite"><span class="t">Railway signal monitoring: an algorithmic approach for improved maintenance strategies</span>Inês Henriques — SOLVIT · MSc in Mathematics Applied to Industry (MMAI) <span class="note">with N.&nbsp;Cota (SOLVIT) and F.&nbsp;Cal (ISEL)</span></div></li>
+    <li><span class="yr">2023</span><div class="cite"><span class="t">Numerical modeling of breakwaters for slopes and marginal protection structures. Case studies: Sines fishing port and Praia da Vitória port</span>Bernardo Machado — LNEC · LMATE internship <span class="note">with A.&nbsp;Mendonça (LNEC) and A.&nbsp;F.&nbsp;Prior (ISEL)</span></div></li>
+    <li><span class="yr">2022</span><div class="cite"><span class="t">Calibration of the SWAN numerical model based on neural networks</span>Nuno Moreira Morgado — LNEC · LMATE internship <span class="note">with L.&nbsp;Pinheiro (LNEC) and A.&nbsp;F.&nbsp;Prior (ISEL)</span></div></li>
+    <li><span class="yr">2022</span><div class="cite"><span class="t">Acoustic behavior model in air treatment units</span>Inês Morais — Sandometal · LMATE internship <span class="note">with R.&nbsp;Santos and P.&nbsp;Silva (Sandometal) and S.&nbsp;Lopes (ISEL)</span></div></li>
+    <li><span class="yr">2021</span><div class="cite"><span class="t">An introduction to scaffold design using topology optimization methods</span>Jan Marxen — CDRSP, Polytechnic of Leiria · LMATE internship <span class="note">with P.&nbsp;Pascoal-Faria (CDRSP), S.&nbsp;Lopes and T.&nbsp;Charters de Azevedo (ISEL)</span></div></li>
+    <li><span class="yr">2021</span><div class="cite"><span class="t">Validation of the SWAN numerical model based on statistical comparison of sea state regimes</span>Catarina Marques Graça — LNEC · LMATE internship <span class="note">with L.&nbsp;Pinheiro (LNEC) and A.&nbsp;F.&nbsp;Prior (ISEL)</span></div></li>
+    <li><span class="yr">2020</span><div class="cite"><span class="t">An introduction to analytical and numerical methods for computational fluid dynamics simulation: application to water assisted injection molding (WAIM)</span>Eurico Carnall Figueiredo — CDRSP, Polytechnic of Leiria · LMATE internship <span class="note">with P.&nbsp;Pascoal-Faria (CDRSP), R.&nbsp;Enguiça and T.&nbsp;Charters de Azevedo (ISEL)</span></div></li>
+    <li><span class="yr">2020</span><div class="cite"><span class="t">Predictive modeling of consumption in the natural gas market of Portugal and Spain</span>Diogo Joaquim — GALP · LMATE internship <span class="note">with R.&nbsp;Enguiça (ISEL) and G.&nbsp;Monteiro (GALP)</span></div></li>
+    <li><span class="yr">2020</span><div class="cite"><span class="t">Analysis of the operationality of the port terminal of S.&nbsp;Roque do Pico, based on the general sea state regime</span>Ana Rita Costa — LNEC · LMATE internship <span class="note">with S.&nbsp;Aleixo (ISEL), J.&nbsp;Fortes and L.&nbsp;Pinheiro (LNEC)</span></div></li>
+    <li><span class="yr">2019</span><div class="cite"><span class="t">Stock and contracting optimization and capacity planning</span>Ruben Sales — GALP · LMATE final project <span class="note">with R.&nbsp;Enguiça (ISEL) and G.&nbsp;Monteiro (GALP)</span></div></li>
+    <li><span class="yr">2019</span><div class="cite"><span class="t">Optimization of prices and margins</span>Pedro Ferreira — Würth Portugal · LMATE final project <span class="note">with T.&nbsp;Charters de Azevedo (ISEL), G.&nbsp;Figueiredo and J.&nbsp;Fernandes (Würth Portugal)</span></div></li>
+  </ol>
+</section>
+
+<!-- ============================================================== SERVICE -->
+<section id="service" aria-labelledby="svc-h">
+  <h2 id="svc-h">Service</h2>
+  <div class="cols">
+    <div>
+      <h3 class="eyebrow">Conference committees</h3>
+      <ul class="plain">
+        <li>Organizing committee, amim’26 — Autumn Meeting for Industrial Mathematics, Foz do Arelho, 16–17 October 2026</li>
+        <li>Scientific committee, ESGI&nbsp;196, UBI, Covilhã, 2026</li>
+        <li>Scientific committee, ESGI&nbsp;181, UTAD, Vila Real, 2024</li>
+        <li>Organizing committee, amim’24 — Autumn Meeting for Industrial Mathematics, Foz do Arelho, 2024</li>
+        <li>Scientific committee, ESGI&nbsp;174, ESTG–P.Porto, Felgueiras, 2023</li>
+        <li>Organizing committee, MATH’23 Networking Workshop, ISEL, 2023</li>
+        <li>Local organizing committee, ESGI&nbsp;161, ISEL, 2022</li>
+        <li>Organizing committee, LMATE’22 Networking Workshop, ISEL, 2022</li>
+        <li>Local organizing committee, preESGI 2020 “From Academy” workshop, ISEL, 2020</li>
+        <li>Scientific committee, Mathematics for Smart Security, ISEL, 2018</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="eyebrow">Study Groups with Industry</h3>
+      <p class="note-block">Participant in the European Study Groups with Industry: in Portugal, ESGI&nbsp;60 (2007), 65 (2008), 140 (2018), 155 (2019), 161 (2022), 174 (2023), 181 (2024) and 196 (2026, COFICAB’s stock-pairing problem); in Barcelona, ESGI&nbsp;2025 at the Centre de Recerca Matemàtica (SENER’s problem on an ADAS for safe overtaking).</p>
+      <h3 class="eyebrow">At ISEL</h3>
+      <ul class="plain">
+        <li>Coordinating committee of the BSc in Mathematics Applied to Technology and Business (LMATE), since September 2026 and 2018–2023</li>
+        <li>In charge of LMATE’s part of LAB4MAT, the computing laboratory, 2018–2024</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= TEACHING -->
+<section id="teaching" aria-labelledby="teach-h">
+  <h2 id="teach-h">Teaching</h2>
+  <p>I have taught at ISEL since 2002, mainly numerical analysis, calculus, linear algebra and mathematical modeling for engineering and applied-mathematics students. Before that I taught at the Faculdade de Ciências (Universidade de Lisboa), FCT NOVA and the Polytechnic of Bragança.</p>
+  <div class="cols">
+    <div>
+      <h3 class="eyebrow">Courses at ISEL</h3>
+      <ul class="plain">
+        <li>Numerical Analysis; Introduction to Numerical Analysis; Numerical Calculus</li>
+        <li>Mathematical Modeling Seminar</li>
+        <li>Mathematical Analysis I, II and complements; Vector Analysis; Differential and Integral Calculus</li>
+        <li>Linear Algebra and Analytic Geometry</li>
+        <li>Applied Mathematics for Civil and for Electrical Engineering</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="eyebrow">Materials</h3>
+      <ul class="plain">
+        <li><a href="#b-fan-2019"><em>Fundamentos de Análise Numérica: com Python e R</em></a> (with F.&nbsp;Correia dos Santos and J.&nbsp;Duarte), Edições Sílabo, 2019</li>
+        <li><a href="https://github.com/ndlopes-github/IAN_NOTEBOOKS">Jupyter notebooks</a> for Introduction to Numerical Analysis (in Portuguese)</li>
+        <li>Course notes: <em>Numerical Methods: Practical Notes</em> (2017); <em>Introduction to Numerical Calculus with Python</em> (2015, 2016)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap"><div class="foot">
+  <p>Nuno David Lopes · Department of Mathematics, ISEL, Lisbon · <a href="mailto:nuno.lopes@isel.pt">nuno.lopes@isel.pt</a></p>
+  <p>Last updated October 2026 · No cookies, no tracking · The <a href="https://arquivo.pt/wayback/20110707033620/http://cmaf.ptmat.fc.ul.pt/~ndl/">2011 version of this page</a> is preserved at Arquivo.pt.</p>
+</div></div></footer>
+</body>
+</html>

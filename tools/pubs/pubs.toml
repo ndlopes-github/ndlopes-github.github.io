@@ -1,0 +1,438 @@
+# Publications shown on the site. tools/pubs/build.jl turns this file into the HTML between
+# <!-- pubs:begin --> / <!-- pubs:end --> (Publications) and <!-- review:begin --> / <!-- review:end -->
+# (Work in progress) in index.html, including the BibTeX entries.
+#
+# Fields
+#   id        stable HTML id (p- journal, c- chapter, b- book, k- proceedings, r- report, t- thesis, s- under review)
+#   section   journal | book | proceedings | report | thesis | review   (order within a section = order here)
+#   topics    any of: waves, coastal, flows, industry, other   (first one colours the badge; used by the filters)
+#   badge     short venue label shown in the badge
+#   authors   "Initials Surname"; the self-name is always "N. D. Lopes"
+#   display   the venue line exactly as shown on the page (HTML allowed)
+#   bibtype + bib fields (journal, volume, number, pages, booktitle, editor, series, publisher, address,
+#             edition, institution, type, school, note, url, doi) feed the generated BibTeX
+#   abstract  optional HTML; source noted in a comment
+#   links     optional list of { label, url }
+
+# ------------------------------------------------------------------ journal articles
+
+[[pub]]
+id = "p-cose-2026"
+section = "journal"
+topics = ["coastal"]
+badge = "COSE"
+year = 2026
+authors = ["R. Lemos", "A. Mendonça", "C. J. E. M. Fortes", "C. Martinez", "H. Girão", "T. Lopes", "L. Brito", "N. D. Lopes", "A. Prior"]
+title = "Damage evolution formulation: a new approach"
+display = "<em>Coastal and Offshore Science and Engineering</em> 5, 36–47"
+bibtype = "article"
+journal = "Coastal and Offshore Science and Engineering"
+number = "5"
+pages = "36–47"
+doi = "10.53256/COSE_240103"
+# abstract: published PDF (ecampusuniversitypress.it), page 1
+abstract = '''One of the most influential contributions to damage progression formulations was introduced by Melby and Kobayashi. Their initial model was published in Melby and Kobayashi (1988a, b) and subsequently reformulated in Melby and Kobayashi (1999) to allow for non-zero initial damage values. A comprehensive description of these developments is provided in Melby (1999). The formulation predicts damage evolution in rubble mound breakwaters (RMBs) with rock-armoured layers, based on erosion measured in physical scale-model tests and on the characteristics of the incident wave conditions. However, the applicability of this formulation is limited to rock armour layers and to the range of sea states investigated in the original experiments. The present work revisits the Melby and Kobayashi damage evolution formulation and investigates its extension to rubble mound breakwaters armoured with tetrapods. A first approach was previously undertaken using a two-dimensional scale model of a section of the Ericeira breakwater (Lemos et al., 2023), leading to the calibration of new coefficients for the Melby formulation (<em>a</em><sub>p</sub> = 0.03 and <em>b</em> = 0.16). The objective of the present study is to further adjust these coefficients for comparable sea states while accounting for three-dimensional effects on damage evolution, including frontal wave attack. To this end, a long-duration test series (Series A) and two additional series with limited test durations (Series B and C) were conducted using a 1:65 three-dimensional physical model of the Ericeira harbour breakwater. The eroded volume of a selected section of the armour layer was measured using a Kinect position sensor. The damage parameter values obtained from the three-dimensional experiments are higher than those predicted by the formulation derived from the two-dimensional tests (Lemos et al., 2023). Based on the three-dimensional experimental results, new values of the coefficients <em>a</em><sub>p</sub> and <em>b</em> for the Melby and Kobayashi formulation were determined by minimising the root mean square error between measured and predicted damage. The predictive relationships proposed by Melby and Kobayashi (1988a, b), calibrated with <em>a</em><sub>p</sub> = 0.025 and <em>b</em> = 0.30 for the present test programme and accounting for three-dimensional effects associated with bathymetry, are shown to provide a reasonable description of damage evolution, with deviations remaining within an acceptable standard deviation.'''
+
+[[pub]]
+id = "p-4or-2025"
+section = "journal"
+topics = ["industry"]
+badge = "4OR"
+year = 2025
+authors = ["A. Araújo", "J. O. Cerdeira", "N. D. Lopes", "A. Moura"]
+title = "Minimizing costs in signal provision by communication antennas along a railway line"
+display = "<em>4OR – A Quarterly Journal of Operations Research</em> 23(4), 435–454"
+bibtype = "article"
+journal = "4OR – A Quarterly Journal of Operations Research"
+volume = "23"
+number = "4"
+pages = "435–454"
+doi = "10.1007/s10288-025-00599-7"
+links = [{ label = "Code", url = "https://github.com/ndlopes-github/RailwayOptSitePos" }]
+# abstract: Crossref
+abstract = '''In this paper we address a wireless network design problem on a railway line. Given a finite set of locations along a railway line and different types of communication antennas that can be installed at each of these locations, which locations and which type of antenna should be selected to ensure a certain level of signal coverage along the railway line while minimizing construction costs? We formulate the problem as a 0/1 linear optimization model, prove that the problem is NP-hard, and report computational experiments using real and simulated data. The computational tests showed that the model is capable of solving the problem for railway lines longer than any existing real railway lines.'''
+
+[[pub]]
+id = "p-ijnam-2024"
+section = "journal"
+topics = ["flows"]
+badge = "IJNAM"
+year = 2024
+authors = ["H. B. de Oliveira", "N. D. Lopes"]
+title = "Continuous/discontinuous finite element approximation of a 2D Navier–Stokes problem arising in fluid confinement"
+display = "<em>International Journal of Numerical Analysis and Modeling</em> 21(3), 315–352"
+bibtype = "article"
+journal = "International Journal of Numerical Analysis and Modeling"
+volume = "21"
+number = "3"
+pages = "315–352"
+doi = "10.4208/ijnam2024-1013"
+# abstract: Crossref
+abstract = '''In this work, a stationary 2d Navier–Stokes problem with nonlinear feedback forces field is considered in the stream-function formulation. We use the Continuous/Discontinuous Finite Element Method (CD-FEM), with interior penalty terms, to numerically solve the associated boundary-value problem. For the associated continuous and discrete problems, we prove the existence of weak solutions and establish the conditions for their uniqueness. Consistency, stability and convergence of the method are also shown analytically. To validate the numerical model regarding its applicability and robustness, several test cases are carried out.'''
+
+[[pub]]
+id = "p-jmi-2023"
+section = "journal"
+topics = ["industry"]
+badge = "JMI"
+year = 2023
+authors = ["R. Enguiça", "N. D. Lopes"]
+title = "The modelling of urban running races"
+display = "<em>Journal of Mathematics in Industry</em> 13"
+bibtype = "article"
+journal = "Journal of Mathematics in Industry"
+volume = "13"
+doi = "10.1186/s13362-023-00136-3"
+links = [{ label = "Code", url = "https://github.com/ndlopes-github/BoostRace" }]
+# abstract: Crossref
+abstract = '''In this paper, we model mass running urban races, taking into consideration several conditioning factors. The main goal is to find ideal configurations of the start of the race, splitting it into several waves, reducing the density of athletes and the overall time lost, when comparing the normal race results with a race without density constraints. This model takes into account distinct realistic runners’ profiles, changes in slope and width on the race course and its influence on the running pace. Moreover, density levels, dynamics of the start of the race and time between the departure of waves are also considered.'''
+
+[[pub]]
+id = "p-camwa-2021"
+section = "journal"
+topics = ["flows"]
+badge = "CAMWA"
+year = 2021
+authors = ["N. D. Lopes", "H. B. de Oliveira"]
+title = "Continuous/discontinuous Galerkin approximations for a fourth-order nonlinear problem"
+display = "<em>Computers &amp; Mathematics with Applications</em> 97, 122–152"
+bibtype = "article"
+journal = "Computers & Mathematics with Applications"
+volume = "97"
+pages = "122–152"
+doi = "10.1016/j.camwa.2021.05.034"
+# abstract: authors' final LaTeX source (not deposited at Crossref)
+abstract = '''We introduce a Continuous/Discontinuous Galerkin Finite Element Method (CDFEM) with interior penalty terms to solve a nonlinear fourth-order problem that appears in the analysis of the confinement of fluid flows governed by the Stokes system. For the associated continuous and discrete problems, we prove the existence and uniqueness of weak solutions. Consistency, stability and convergence of the method are shown analytically. To show the applicability and robustness of the numerical model, several test cases are performed.'''
+
+[[pub]]
+id = "p-nody-2015"
+section = "journal"
+topics = ["waves"]
+badge = "NODY"
+year = 2015
+authors = ["P. J. S. Pereira", "N. D. Lopes", "L. Trabucho"]
+title = "Soliton-type and other travelling wave solutions for an improved class of nonlinear sixth-order Boussinesq equations"
+display = "<em>Nonlinear Dynamics</em> 82(1–2), 783–818"
+bibtype = "article"
+journal = "Nonlinear Dynamics"
+volume = "82"
+number = "1–2"
+pages = "783–818"
+doi = "10.1007/s11071-015-2196-9"
+
+[[pub]]
+id = "p-ijnmf-2012"
+section = "journal"
+topics = ["waves"]
+badge = "IJNMF"
+year = 2012
+authors = ["N. D. Lopes", "P. J. S. Pereira", "L. Trabucho"]
+title = "A numerical analysis of a class of generalized Boussinesq-type equations using continuous/discontinuous FEM"
+display = "<em>International Journal for Numerical Methods in Fluids</em> 69(7), 1186–1218"
+bibtype = "article"
+journal = "International Journal for Numerical Methods in Fluids"
+volume = "69"
+number = "7"
+pages = "1186–1218"
+doi = "10.1002/fld.2631"
+# abstract: Crossref (publisher's copyright line removed)
+abstract = '''An improved class of Boussinesq systems of an arbitrary order using a wave surface elevation and velocity potential formulation is derived. Dissipative effects and wave generation due to a time-dependent varying seabed are included. Thus, high-order source functions are considered. For the reduction of the system order and maintenance of some dispersive characteristics of the higher-order models, an extra <em>O</em>(<em>μ</em><sup>2<em>n</em>+2</sup>) term (<em>n</em> ∈ ℕ) is included in the velocity potential expansion. We introduce a nonlocal continuous/discontinuous Galerkin FEM with inner penalty terms to calculate the numerical solutions of the improved fourth-order models. The discretization of the spatial variables is made using continuous <em>P</em><sub>2</sub> Lagrange elements. A predictor-corrector scheme with an initialization given by an explicit Runge–Kutta method is also used for the time-variable integration. Moreover, a CFL-type condition is deduced for the linear problem with a constant bathymetry. To demonstrate the applicability of the model, we considered several test cases. Improved stability is achieved.'''
+
+# ------------------------------------------------------------------ book and chapter
+
+[[pub]]
+id = "b-fan-2019"
+section = "book"
+topics = ["other"]
+badge = "Book"
+year = 2019
+authors = ["F. Correia dos Santos", "J. Duarte", "N. D. Lopes"]
+title = "Fundamentos de Análise Numérica: com Python e R"
+display = "2nd ed., Edições Sílabo, Lisboa. Textbook (in Portuguese) on numerical analysis with Python and R"
+bibtype = "book"
+edition = "Second"
+publisher = "Edições Sílabo"
+address = "Lisboa"
+
+[[pub]]
+id = "c-fenics-2012"
+section = "book"
+topics = ["waves"]
+badge = "LNCSE"
+year = 2012
+authors = ["N. D. Lopes", "P. J. S. Pereira", "L. Trabucho"]
+title = "Improved Boussinesq equations for surface water waves"
+display = "In A.&nbsp;Logg, K.-A.&nbsp;Mardal, G.&nbsp;N.&nbsp;Wells (eds.), <em>Automated Solution of Differential Equations by the Finite Element Method</em> (the FEniCS book), Lecture Notes in Computational Science and Engineering 84, Springer, 471–504"
+bibtype = "incollection"
+booktitle = "Automated Solution of Differential Equations by the Finite Element Method"
+editor = ["A. Logg", "K.-A. Mardal", "G. N. Wells"]
+series = "Lecture Notes in Computational Science and Engineering"
+volume = "84"
+publisher = "Springer"
+pages = "471–504"
+doi = "10.1007/978-3-642-23099-8_25"
+
+# ------------------------------------------------------------------ conference proceedings
+
+[[pub]]
+id = "k-icnaam-2023"
+section = "proceedings"
+topics = ["industry"]
+badge = "AIP CP"
+year = 2023
+authors = ["J. E. Marxen", "T. Charters", "S. Lopes", "N. D. Lopes", "N. M. F. Alves", "P. Pascoal-Faria"]
+title = "An introduction to scaffold design using topology optimization methods"
+display = "<em>AIP Conference Proceedings</em> 2849, 150002 (ICNAAM 2021)"
+bibtype = "inproceedings"
+booktitle = "International Conference of Numerical Analysis and Applied Mathematics (ICNAAM 2021)"
+series = "AIP Conference Proceedings"
+volume = "2849"
+pages = "150002"
+doi = "10.1063/5.0162364"
+
+[[pub]]
+id = "k-icce-2023"
+section = "proceedings"
+topics = ["coastal"]
+badge = "ICCE"
+year = 2023
+authors = ["L. V. Pinheiro", "A. H. Gomes", "N. D. Lopes", "S. Lopes", "A. Prior", "J. A. Santos", "C. J. Fortes"]
+title = "Neural networks for optimization of an early warning system for moored ships in harbours"
+display = "<em>Coastal Engineering Proceedings</em> 37 (ICCE 2022), paper 60"
+bibtype = "inproceedings"
+booktitle = "Coastal Engineering Proceedings (ICCE 2022)"
+volume = "37"
+pages = "60"
+doi = "10.9753/icce.v37.papers.60"
+# abstract: Crossref ("80percent" spaced as "80 percent")
+abstract = '''Within the BlueSafePort project, an early warning system (EWS) for moored ships in the port of Sines was developed. In order to improve the reliability and accuracy of the system, two neural networks (NN) were trained, using wave buoys measured datasets. Numerical models results for the wave propagation are adjusted and forecasts are improved. The trained neural networks were able to produce more accurate estimates for the significant wave height and mean wave period, at the buoy location, deployed in front of the Sines Port. The use of the new NN led to an overall reduction of the root mean square error of around 80 percent compared with SWAN numerical model simulations, thus reducing potential errors in subsequential calculations and alert levels issued by the system for the moored ships.'''
+
+[[pub]]
+id = "k-agua-2023a"
+section = "proceedings"
+topics = ["coastal"]
+badge = "Água"
+year = 2023
+authors = ["L. Pinheiro", "N. Morgado", "A. Gomes", "S. Lopes", "N. D. Lopes", "A. Prior", "J. Fortes"]
+title = "Uso de redes neuronais para melhoria de um sistema de alerta para riscos em portos"
+display = "<em>16.º Congresso da Água</em>, LNEC, Lisboa"
+bibtype = "inproceedings"
+booktitle = "16.º Congresso da Água"
+address = "LNEC, Lisboa"
+
+[[pub]]
+id = "k-agua-2023b"
+section = "proceedings"
+topics = ["coastal"]
+badge = "Água"
+year = 2023
+authors = ["A. Mendonça", "B. Machado", "M. T. Reis", "J. Santos", "C. Fortes", "N. D. Lopes", "A. Prior"]
+title = "Evolução do dano do manto protetor do quebra-mar de talude do porto da Ericeira: análise probabilística"
+display = "<em>16.º Congresso da Água</em>, LNEC, Lisboa"
+bibtype = "inproceedings"
+booktitle = "16.º Congresso da Água"
+address = "LNEC, Lisboa"
+
+[[pub]]
+id = "k-mefte-2012"
+section = "proceedings"
+topics = ["waves"]
+badge = "MEFTE"
+year = 2012
+authors = ["N. D. Lopes", "P. J. S. Pereira", "L. Trabucho"]
+title = "A numerical analysis of a class of KdV-BBM equations using continuous/discontinuous Galerkin finite element method"
+display = "<em>MEFTE 2012 — IV Conferência Nacional em Mecânica dos Fluidos, Termodinâmica e Energia</em>, LNEC, Lisboa"
+bibtype = "inproceedings"
+booktitle = "MEFTE 2012 — IV Conferência Nacional em Mecânica dos Fluidos, Termodinâmica e Energia"
+address = "LNEC, Lisboa"
+
+[[pub]]
+id = "k-spm-2011"
+section = "proceedings"
+topics = ["waves"]
+badge = "SPM"
+year = 2011
+authors = ["N. D. Lopes", "P. J. S. Pereira", "L. Trabucho"]
+title = "Um método numérico para uma classe de equações de Boussinesq para ondas de superfície com batimetria dependente do tempo"
+display = "<em>Boletim da Sociedade Portuguesa de Matemática</em>, Encontro Nacional da SPM 2010, 42–46"
+bibtype = "article"
+journal = "Boletim da Sociedade Portuguesa de Matemática"
+note = "Encontro Nacional da SPM 2010"
+pages = "42–46"
+
+[[pub]]
+id = "k-eccomas-2010"
+section = "proceedings"
+topics = ["waves"]
+badge = "ECCOMAS"
+year = 2010
+authors = ["N. D. Lopes", "P. J. S. Pereira", "L. Trabucho"]
+title = "A C/DG-FEM solution of an improved Boussinesq system for surface water waves"
+display = "<em>Proceedings of the Fifth European Conference on Computational Fluid Dynamics, ECCOMAS CFD 2010</em>, Lisbon"
+bibtype = "inproceedings"
+booktitle = "Proceedings of the Fifth European Conference on Computational Fluid Dynamics, ECCOMAS CFD 2010"
+address = "Lisbon"
+
+[[pub]]
+id = "k-cmce-2004"
+section = "proceedings"
+topics = ["other"]
+badge = "CMCE"
+year = 2004
+authors = ["N. D. Lopes", "L. Trabucho"]
+title = "Aplicação do método dos elementos finitos na análise de uma classe de problemas de convecção-difusão"
+display = "<em>Congresso de Métodos Computacionais em Engenharia</em>, LNEC, Lisboa"
+bibtype = "inproceedings"
+booktitle = "Congresso de Métodos Computacionais em Engenharia"
+address = "LNEC, Lisboa"
+
+# ------------------------------------------------------------------ reports from industry problems
+
+[[pub]]
+id = "r-wine-2026"
+section = "report"
+topics = ["industry"]
+badge = "MIIR"
+year = 2026
+authors = ["A. Costa", "A. Gavina", "A. Mota", "A. Moura", "C. Dias", "L. Afonso", "N. D. Lopes"]
+title = "Enhancing wine sensory evaluation: develop a robust system for consistent and accurate taster scores"
+display = "<em>Mathematics in Industry Reports</em>. ESGI&nbsp;181, problem from the Vinho Verde Viticulture Commission"
+bibtype = "techreport"
+institution = "Mathematics in Industry Reports"
+note = "ESGI 181, problem from the Vinho Verde Viticulture Commission"
+doi = "10.33774/miir-2026-vt4px"
+# abstract: Crossref
+abstract = '''This report addresses a challenge proposed by Comissão de Viticultura da Região dos Vinhos Verdes (CVRVV) at the 181st European Study Group in Industry. Here we investigate the refinement of the sensory evaluation methodology of wine employed by the CVRVV laboratory, with a focus on improving statistical rigor and tasters' assessments. We perform a detailed statistical analysis of the sensory evaluation data, including measures of central tendency, dispersion, and distribution, to identify sources of variability. We also develop a script to assess tasters consistency by analyzing deviations from the panel median and repeatability across tests. These approaches improve the aggregation of sensory data, detect errors, and establish sound statistical criteria for sample validation and test series acceptance, ensuring more precise and reliable sensory analysis.'''
+
+[[pub]]
+id = "r-soles-2024"
+section = "report"
+topics = ["industry"]
+badge = "MIIR"
+year = 2024
+authors = ["A. Moura", "I. C. Lopes", "J. Matias", "N. D. Lopes", "R. Enguiça"]
+title = "Optimization of sole production scheduling"
+display = "<em>Mathematics in Industry Reports</em>. ESGI&nbsp;174, problem from SoftIdea"
+bibtype = "techreport"
+institution = "Mathematics in Industry Reports"
+note = "ESGI 174, problem from SoftIdea"
+doi = "10.33774/miir-2024-zhmg5"
+# abstract: Crossref
+abstract = '''This report addresses a challenge proposed at the 174th European Study Group in Industry to develop an algorithm to optimize processes on rubber soles manufacturing. The objective is to create an order distribution plan that maximizes efficiency, reduces setup times synchronizing molds changing, ensuring that delivery dates are met. This problem can be classified as a parallel machines scheduling problem with sequence dependent setup times. This work presents an heuristic that minimizes the makespan, accounting for the sequence dependent setup times, divided into two steps: (i) a client’s order will be partitioned into sets corresponding to the assigned slots; (ii) reorder the molds within each position of the press, so that setup times are simultaneous. We find solutions for real data, for cases with double and triple molds for a given size. Results show that synchronization of setup times due to heating and mold changes decrease significantly the makespan.'''
+
+[[pub]]
+id = "r-solvit-2023"
+section = "report"
+topics = ["industry"]
+badge = "MIIR"
+year = 2023
+authors = ["A. Araújo", "J. O. Cerdeira", "E. Costa e Silva", "N. D. Lopes", "A. Moura"]
+title = "Optimal configuration for communication antenna along a railway line"
+display = "<em>Mathematics in Industry Reports</em>. ESGI&nbsp;161, problem from Solvit"
+bibtype = "techreport"
+institution = "Mathematics in Industry Reports"
+note = "ESGI 161, problem from Solvit"
+doi = "10.33774/miir-2023-tkf3c"
+# abstract: Crossref ("guaran- tee" hyphenation artifact joined)
+abstract = '''Solvit’s main task is to provide and maintain stable signal coverage along railway tracks, ensuring quality communications. To do this, the company should design a suitable antenna network in order to guarantee good signal coverage while reducing the costs associated with the entire network. In this report we formulate the problem as 0/1 linear optimization models, and report computational results obtained using the models on real data provided by the company.'''
+
+[[pub]]
+id = "r-vipex-2019"
+section = "report"
+topics = ["industry"]
+badge = "ESGI"
+year = 2019
+authors = ["N. Ferreira", "N. Alves", "N. D. Lopes", "P. Faria", "R. Barreira"]
+title = "Vipex container lid"
+display = "Reports of the Portuguese Study Groups, ESGI&nbsp;155, Leiria"
+bibtype = "techreport"
+institution = "Reports of the Portuguese Study Groups"
+note = "ESGI 155, Leiria"
+
+[[pub]]
+id = "r-lap2go-2018"
+section = "report"
+topics = ["industry"]
+badge = "ESGI"
+year = 2018
+authors = ["P. Amaral", "S. Barbeiro", "R. Barreira", "M. Cruz", "R. Enguiça", "N. D. Lopes", "M. McPhail", "F. Wechsung"]
+title = "Managing start waves for mass running events"
+display = "Reports of the Portuguese Study Groups, ESGI&nbsp;140 (problem from Lap2Go), Barreiro"
+bibtype = "techreport"
+institution = "Reports of the Portuguese Study Groups"
+note = "ESGI 140 (problem from Lap2Go), Barreiro"
+
+[[pub]]
+id = "r-wurth-2015"
+section = "report"
+topics = ["industry"]
+badge = "Report"
+year = 2015
+authors = ["N. D. Lopes"]
+title = "Profitability optimization in supply chain"
+display = "Technical report for Würth Portugal, Department of Mathematics, ISEL"
+bibtype = "techreport"
+institution = "Department of Mathematics, ISEL"
+note = "Technical report for Würth Portugal"
+
+[[pub]]
+id = "r-rotor-2008"
+section = "report"
+topics = ["industry"]
+badge = "ESGI"
+year = 2008
+authors = ["I. Cruz", "P. Freitas", "N. D. Lopes"]
+title = "Cooling of a rotor"
+display = "Reports of the Portuguese Study Groups, ESGI&nbsp;65 (problem from BioSafe), University of Porto"
+bibtype = "techreport"
+institution = "Reports of the Portuguese Study Groups"
+note = "ESGI 65 (problem from BioSafe), University of Porto"
+
+# ------------------------------------------------------------------ theses
+
+[[pub]]
+id = "t-phd-2014"
+section = "thesis"
+topics = ["waves"]
+badge = "PhD"
+year = 2014
+authors = ["N. D. Lopes"]
+title = "Métodos analíticos e numéricos do tipo elementos finitos contínuos e contínuos/descontínuos para o estudo de modelos de Boussinesq melhorados para a propagação de ondas"
+display = "PhD thesis, Universidade Nova de Lisboa"
+bibtype = "phdthesis"
+school = "Universidade Nova de Lisboa"
+url = "https://hdl.handle.net/10362/12197"
+links = [{ label = "RUN", url = "https://hdl.handle.net/10362/12197" }]
+
+[[pub]]
+id = "t-msc-2004"
+section = "thesis"
+topics = ["other"]
+badge = "MSc"
+year = 2004
+authors = ["N. D. Lopes"]
+title = "Aplicação do método dos elementos finitos na análise de uma classe de problemas de convecção-difusão"
+display = "MSc thesis, Universidade de Lisboa"
+bibtype = "mastersthesis"
+school = "Universidade de Lisboa"
+
+# ------------------------------------------------------------------ under review (Work in progress section)
+
+[[pub]]
+id = "s-breakwaters"
+section = "review"
+topics = ["coastal"]
+badge = "Review"
+authors = ["A. Mendonça", "R. Lemos", "C. J. E. M. Fortes", "N. D. Lopes", "A. Prior", "L. Brito", "B. Pereira", "T. Lopes"]
+title = "Probabilistic damage evolution of tetrapod-armoured rubble-mound breakwaters: calibration from 3D physical modelling and 100-year forecasts"
+display = "Under review"
+
+[[pub]]
+id = "s-shoes"
+section = "review"
+topics = ["industry"]
+badge = "Review"
+authors = ["J. O. Cerdeira", "R. Enguiça", "N. D. Lopes"]
+title = "Parallel machine scheduling with simultaneous interruptions: a case study in shoe sole production"
+display = "Under review"
+links = [{ label = "Code", url = "https://github.com/ndlopes-github/ShoeOptSetupTime" }, { label = "Zenodo", url = "https://doi.org/10.5281/zenodo.20642118" }]
