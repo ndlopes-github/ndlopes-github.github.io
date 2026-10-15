@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 # Regenerate media/race-boostrace.{mp4,jpg} from the published BoostRace notebook.
 # Usage: tools/boostrace/make.sh [JLRace.ipynb] [output dir]
-# Needs julia, jq, ffmpeg, ImageMagick. Takes about 3 minutes (simulation ~100 s, rendering ~50 s).
+#        VIEWS=1 tools/boostrace/make.sh [JLRace.ipynb]
+# The second form renders the three gallery views instead (views.jl) into
+# ${GALLERY_CACHE:-$HOME/.cache/mywebpage-gallery}/boostrace-{hist,speed,rho}.mp4,
+# the sources of the race-* rows of tools/gallery/clips.tsv; then run tools/gallery/build.sh.
+# The notebook is JLRace.ipynb on the main branch of the public repository, e.g.
+#   git -C ~/DrWatsonProjects/BoostRace show origin/main:JLRace.ipynb > JLRace.ipynb
+# Needs julia, jq, ffmpeg, ImageMagick. Takes about 3 minutes (simulation ~100 s, rendering ~50 s);
+# the views take a few minutes more.
 set -euo pipefail
 here="$(cd "$(dirname "$0")" && pwd)"
 nb="${1:-$HOME/DrWatsonProjects/BoostRace/JLRace.ipynb}"
@@ -13,10 +20,24 @@ echo "work dir: $work"
 jq -r '.cells | to_entries[] | select(.value.cell_type=="code" and .key <= 51) | (.value.source|join("")) + "\n"' "$nb" > "$work/model.jl"
 # Julia >= 1.12 rejects re-assigning a const global; cell 23 re-assigns coursename to the same value.
 sed -i 's|^coursename=parameters.coursename|# &|' "$work/model.jl"
-cp "$here/sim.jl" "$here/render.jl" "$work/"
+cp "$here/sim.jl" "$here/render.jl" "$here/views.jl" "$work/"
 
 julia --project="$here" -e 'using Pkg; Pkg.instantiate()'
 julia --project="$here" "$work/sim.jl"
+
+if [ -n "${VIEWS:-}" ]; then
+  cache="${GALLERY_CACHE:-$HOME/.cache/mywebpage-gallery}"
+  mkdir -p "$cache"
+  julia --project="$here" "$work/views.jl"
+  for v in hist speed rho; do
+    ffmpeg -v error -y -framerate 30 -i "$work/views/$v/f%04d.png" \
+      -vf "tpad=stop_mode=clone:stop_duration=1,format=yuv420p" \
+      -c:v libx264 -preset slow -crf 18 -tune animation -movflags +faststart -an "$cache/boostrace-$v.mp4"
+    echo "wrote $cache/boostrace-$v.mp4"
+  done
+  exit 0
+fi
+
 julia --project="$here" "$work/render.jl"
 
 ffmpeg -v error -y -framerate 30 -i "$work/frames/f%04d.png" \

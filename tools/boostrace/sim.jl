@@ -6,9 +6,12 @@ t = @elapsed begin
     _, allrunners = race(true)
 end
 println(">Elapsed time=", t)
-# Column k of allrunners.pos holds positions at time (k-1)*observertimestep (see rk2_solver).
+# Column k of allrunners.pos holds positions at time (k-1)*observertimestep (see rk2_solver);
+# vels and rhos are stored on the same observer grid. render.jl uses P; views.jl also V and R.
 const framestride = 15
 P = allrunners.pos[:, 1:framestride:end]
+V = allrunners.vels[:, 1:framestride:end]
+R = allrunners.rhos[:, 1:framestride:end]
 serialize(joinpath(@__DIR__, "positions_every15s.jls"),
-          (P = P, dt = framestride * parameters.observertimestep, ninwaves = NinWaves))
+          (P = P, V = V, R = R, dt = framestride * parameters.observertimestep, ninwaves = NinWaves))
 println(">Saved ", size(P), " positions")
