@@ -21,7 +21,11 @@ Each poster (`.jpg`) is one frame of its clip.
 
 ## Gallery
 
-The gallery clips in `media/gallery/` are built from `tools/gallery/clips.tsv` by `tools/gallery/build.sh` (see the script header for the column format). Sources are Arquivo.pt captures of the 2011 site (`https://arquivo.pt/wayback/2011id_/http://ptmat.fc.ul.pt/~ndl/<path>`), YouTube videos, and local files. Arquivo.pt truncated some captures at 10 MB; `maxframes` keeps only the cleanly decodable part. Clips longer than 30 s are sped up to 30 s (at most 4×), scaled to ≤ 480 px wide, and encoded at CRF 30.
+The gallery clips in `media/gallery/` are built from `tools/gallery/clips.tsv` by `tools/gallery/build.sh` (see the script header for the column format). Sources are Arquivo.pt captures of the 2011 site (`arq:`, `https://arquivo.pt/wayback/2011id_/http://ptmat.fc.ul.pt/~ndl/<path>`), the local backup of the same site (`bak:`, same `<path>` under `$GALLERY_BACKUP`, default `/media/nuno/Warehouse/TOSHIBA/BackUP/mywebpages/public_html`), YouTube videos, and local files. Arquivo.pt truncated captures at 10 MB, so `ringtest`, `wu-fkdv` and `toytsunami-basin` are now built from the full-length originals in the backup; `maxframes` remains for truncated captures. Clips longer than 30 s are sped up to 30 s and clips shorter than 8 s are slowed down to 8 s (either way by at most 4×); then they are scaled to ≤ 480 px wide and encoded at CRF 30. Only `tagus-currents` (58 frames, 12-minute snapshots) is slowed down.
+
+Two 2016 YouTube clips were dropped as duplicates of older runs (checked frame by frame): `BotK383Xk7A` is `tau1dt001Hnl` (now `landslide-cdg`, Xd3d dated 14/12/09), and `86FZPF3LhxE` is the 2011 DOLFWAVE `tsunami.gif` (now `tsunami-2011`). Their "2016" was the upload year, not the computation year.
+
+Captions follow the pages that first showed each film: the 2007 Navier–Stokes pages (`NStokes/`), the Boussinesq report (`Bouss/`), the DOLFWAVE gallery and demo pages (`other/dolfin.dir/`, `doc/`), and the MSc thesis (`tese_mest/tese.pdf`, §7.2–7.3). Years come from the render date that Xd3d prints in each film's legend (dd/mm/yy) where one is legible. File timestamps in the backup are copy dates and are not used. The landslide pair (`underzhao`, `tau1dt001Hnl`) is identified with the DOLFWAVE `hLandslide/LPTcdgHnl` demo: the two films sit side by side in the 2009 gallery and show the same moving-bottom dipole as the demo.
 
 ## Publications
 

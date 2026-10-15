@@ -7,11 +7,12 @@
 # Usage:  tools/gallery/build.sh          encode clips not yet in media/gallery, rewrite the HTML
 #         FORCE=1 tools/gallery/build.sh  re-encode everything (after changing a crop, say)
 # Sources are cached in ${GALLERY_CACHE:-$HOME/.cache/mywebpage-gallery}.
+# bak: sources are read from the local backup of the 2011 site, ${GALLERY_BACKUP} (default below).
 # Needs curl, ffmpeg/ffprobe, awk, and yt-dlp for yt: sources.
 #
 # clips.tsv columns (tab-separated, header line first):
 #   id  group  src  crop  maxframes  dark  title  meta
-#   src       arq:<path under ~ndl/ on the 2011 site> | yt:<video id> | file:<path, ~ allowed>
+#   src       arq:<path under ~ndl/ on the 2011 site> | bak:<same path, in the local backup> | yt:<video id> | file:<path, ~ allowed>
 #   crop      ffmpeg crop w:h:x:y in source pixels (w, h even), applied before scaling
 #   maxframes keep only the first N source frames (0 = all); used for truncated captures
 #   dark      1 = black plate behind the clip (for videos with a black background)
@@ -23,10 +24,12 @@ here=$(cd "$(dirname "$0")" && pwd)
 root=$(cd "$here/../.." && pwd)
 out="$root/media/gallery"
 cache="${GALLERY_CACHE:-$HOME/.cache/mywebpage-gallery}"
+backup="${GALLERY_BACKUP:-/media/nuno/Warehouse/TOSHIBA/BackUP/mywebpages/public_html}"
 mkdir -p "$out" "$cache"
 
 maxdur=30    # s: longer clips are sped up to this length...
-maxspeed=4   # ...but by at most 4x
+mindur=8     # s: ...and shorter ones slowed down to this length...
+maxspeed=4   # ...but either way by at most 4x
 width=480    # px: tiles display at ~270 px, so 480 covers ~1.8x screens
 crf=30
 
@@ -35,6 +38,8 @@ fetch() {  # src -> path of a local copy
   case $src in
     arq:*)  f="$cache/arq_$(printf '%s' "${src#arq:}" | tr '/' '_')"
             [ -s "$f" ] || curl -sfL -m 900 -o "$f" "https://arquivo.pt/wayback/2011id_/http://ptmat.fc.ul.pt/~ndl/${src#arq:}" ;;
+    bak:*)  f="$backup/${src#bak:}"
+            [ -s "$f" ] || { echo "not in the backup (is it mounted?): $f" >&2; return 1; } ;;
     yt:*)   f="$cache/yt_${src#yt:}.mp4"
             [ -s "$f" ] || yt-dlp -q --no-warnings -f 'bv*[height<=720][ext=mp4]/b[height<=720]' -o "$f" "https://www.youtube.com/watch?v=${src#yt:}" ;;
     file:*) f="${src#file:}"; f="${f/#\~/$HOME}" ;;
@@ -50,7 +55,10 @@ encode() {  # input id crop maxframes
   n=$(ffmpeg -nostdin -v quiet -i "$in" -map 0:v:0 -f null - -progress pipe:1 | awk -F= '/^frame=/{f=$2} END{print f+0}')
   if [ "$maxf" -gt 0 ] && [ "$maxf" -lt "$n" ]; then n=$maxf; fi
   dur=$(awk -v n="$n" -v r="$rate" 'BEGIN{split(r, a, "/"); print n * a[2] / a[1]}')
-  speed=$(awk -v d="$dur" -v m="$maxdur" -v s="$maxspeed" 'BEGIN{x = d / m; if (x < 1) x = 1; if (x > s) x = s; print x}')
+  speed=$(awk -v d="$dur" -v m="$maxdur" -v l="$mindur" -v s="$maxspeed" 'BEGIN{
+    x = d / m; if (x < 1) x = 1; if (x > s) x = s
+    if (d < l) { x = d / l; if (x < 1 / s) x = 1 / s }
+    print x}')
   ffmpeg -nostdin -v error -y -i "$in" -an \
     -vf "trim=end_frame=$n,setpts=PTS-STARTPTS,crop=$crop,setpts=PTS/$speed,fps=24,scale='min($width,iw)':-2:flags=lanczos,format=yuv420p" \
     -c:v libx264 -preset slow -crf "$crf" -movflags +faststart "$out/$id.mp4"

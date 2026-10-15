@@ -31,6 +31,7 @@ When the sources disagree, the publisher record wins (Crossref, or the PDF itsel
 - Link only **public** repositories. Do not publish personal data: no phone number, date of birth or student grades (the CV has all three).
 - Gallery: `tools/gallery/clips.tsv` holds one row per clip (source, crop, caption). `tools/gallery/build.sh` encodes new rows into `media/gallery/` and rewrites the HTML between `<!-- gallery:begin -->` and `<!-- gallery:end -->`. Never hand-edit that block. Keep each group a multiple of 3 so the desktop grid has no orphan tiles.
 - Animations: self-hosted, muted H.264 MP4 with a JPG poster, markup `<video class="anim" muted loop playsinline controls preload="none" poster=…>`. Keep native `controls` so visitors can pause (WCAG 2.2.2). Crop away solver labels and colour-bar panels, and keep each clip under ~2 MB. Record the source and the ffmpeg settings in `tools/README.md`.
+- Local backup of the 2011 site (machine with the Warehouse drive): `/media/nuno/Warehouse/TOSHIBA/BackUP/mywebpages/public_html`. It holds all ~250 films at full length (Arquivo.pt truncated at 10 MB), the org/latex2html pages that describe them, talk slides (2006–2012) and both theses. `build.sh` reads it through `bak:` sources.
 - More material: about 60 simulations on YouTube (channel `UCFvEkGMsP_IoCOwNkKcReyA`, 2016) and about 40 MP4s from the 2011 site preserved on Arquivo.pt (`https://arquivo.pt/wayback/2011id_/http://ptmat.fc.ul.pt/~ndl/<path>`; index at `list_m.html`). `~/scripts/yt-dlp` (2026.06) gets HTTP 403 on most YouTube videos; it needs updating before more downloads.
 
 ## Previewing
@@ -38,7 +39,7 @@ When the sources disagree, the publisher record wins (Crossref, or the PDF itsel
 Open `index.html` directly in a browser. For headless screenshots, snap Firefox can only read and write under `$HOME`, so use a profile in `~/snap/firefox/common/`:
 
 ```
-firefox --headless --no-remote --profile ~/snap/firefox/common/<prof> --window-size=1280,14000 --screenshot ~/snap/firefox/common/<out>.png file:///home/nuno/WorkRepos/MyWebPage/index.html
+firefox --headless --no-remote --profile ~/snap/firefox/common/<prof> --window-size=1280,14000 --screenshot ~/snap/firefox/common/<out>.png file:///home/nuno/WorkRepos/ndlopes-github.github.io/index.html
 ```
 
 For dark mode, put `user_pref("ui.systemUsesDarkTheme", 1);` in the profile's `user.js`. ImageMagick refuses images taller than 16000 px.
