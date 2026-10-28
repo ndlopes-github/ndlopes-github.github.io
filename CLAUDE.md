@@ -29,7 +29,7 @@ When the sources disagree, the publisher record wins (Crossref, or the PDF itsel
 - Prose uses American spelling, matching the CV. Quoted titles keep their own spelling.
 - No CV link: the full record is on ORCID (user decision, Oct 2026). The `ndlopes-github/CV` repository is private; never link to it.
 - Link only **public** repositories. Do not publish personal data: no phone number, date of birth or student grades (the CV has all three).
-- Gallery captions carry no years; the exact date is not relevant (user decision, Oct 2026). The gallery intro gives the periods: Navier–Stokes and Tagus convection–diffusion 2003–2007, Boussinesq-type waves up to 2012. YouTube upload years (2016) are not computation years.
+- Gallery captions carry no years; the exact date is not relevant (user decision, Oct 2026). The gallery intro gives the periods: Navier–Stokes and Tagus convection–diffusion 2003–2007, Boussinesq-type waves up to 2012, DOLFWAVE in Julia (the 1969 Horseshoe clips) 2026. YouTube upload years (2016) are not computation years.
 - Race animations come only from the public BoostRace (`tools/boostrace/`, notebook `origin/main:JLRace.ipynb`), never from the private BoostRace2 or its `legacy/` track (user decision, Oct 2026).
 - Do not add talk slides or other old PDFs (theses, reports) from the 2011 site or its backup (user decision, Oct 2026).
 - Gallery: `tools/gallery/clips.tsv` holds one row per clip (source, crop, caption). `tools/gallery/build.sh` encodes new rows into `media/gallery/` and rewrites the HTML between `<!-- gallery:begin -->` and `<!-- gallery:end -->`. Never hand-edit that block. Keep each group a multiple of 3 so the desktop grid has no orphan tiles.
