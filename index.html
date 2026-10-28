@@ -17,7 +17,7 @@
 <meta property="og:title" content="Nuno David Lopes">
 <meta property="og:description" content="Numerical analysis of PDEs, water waves, viscous flows, and industrial mathematics. ISEL · CEMAT.">
 <meta property="og:url" content="https://ndlopes-github.github.io/">
-<meta property="og:image" content="https://ndlopes-github.github.io/media/waves-tsunami.jpg">
+<meta property="og:image" content="https://ndlopes-github.github.io/media/waves-horseshoe1969.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -116,9 +116,9 @@
   <div>
   <h3 class="eyebrow">News</h3>
   <ul class="news">
+    <li><time datetime="2026-10">Oct 2026</time><span>Work in progress: the <a href="#research">1969 Horseshoe tsunami</a>, simulated on the sphere with DOLFWAVE in Julia.</span></li>
     <li><time datetime="2026-10">Oct 2026</time><span>Co-organizing <a href="#service">amim’26</a>, the Autumn Meeting for Industrial Mathematics, Foz do Arelho, 16–17 October.</span></li>
     <li><time datetime="2026-08">Aug 2026</time><span>Code release for the shoe-sole scheduling paper (MILP models and heuristics): <a href="https://doi.org/10.5281/zenodo.20642118">ShoeOptSetupTime</a>.</span></li>
-    <li><time datetime="2026-04">Apr 2026</time><span>ESGI&nbsp;181 report on <a href="#r-wine-2026">wine sensory evaluation</a> in <em>Mathematics in Industry Reports</em>.</span></li>
     <li><time datetime="2026-04">Apr 2026</time><span><a href="#p-cose-2026">Damage evolution formulation: a new approach</a>, with LNEC, in <em>Coastal and Offshore Science and Engineering</em>.</span></li>
   </ul>
   </div>
@@ -141,13 +141,13 @@
   <div class="themes">
     <article class="theme">
       <figure>
-        <div class="plate dark"><video class="anim" muted loop playsinline controls preload="none" width="712" height="456"
-          poster="media/waves-tsunami.jpg" aria-label="Animation: a ring-shaped tsunami wave spreading over three-dimensional bathymetry off the Portuguese coast, coloured by surface elevation.">
-          <source src="media/waves-tsunami.mp4" type="video/mp4"></video></div>
-        <figcaption>Toy tsunami along the Portuguese coast, surface elevation (2016) · <a href="https://www.youtube.com/watch?v=mesCz0e27qs">YouTube</a></figcaption>
+        <div class="plate"><video class="anim" muted loop playsinline controls preload="none" width="960" height="504"
+          poster="media/waves-horseshoe1969.jpg" aria-label="Animation: two side-by-side maps of the Atlantic off Portugal, south-west Spain and Morocco. In each, a tsunami spreads in rings from a source south-west of Portugal and reaches the coasts; raised water is red, lowered water blue, over the ocean depth shaded in grey.">
+          <source src="media/waves-horseshoe1969.mp4" type="video/mp4"></video></div>
+        <figcaption>The 1969 Horseshoe tsunami over its first two hours: sea-surface elevation (red up, blue down, saturating at ±0.28&nbsp;m) for fault scenarios C2 (left) and A1 (right) of <a href="https://doi.org/10.1007/s00024-025-03689-z">Baptista et&nbsp;al. (2025)</a>. Zhao–Teng–Cheng model on the sphere, GEBCO bathymetry (<a href="#w-dolfwave-julia">DOLFWAVE in Julia</a>, 2026) · <a href="media/waves-horseshoe1969.mp4">full size</a></figcaption>
       </figure>
       <h3>Water waves and Boussinesq-type models</h3>
-      <p>Derivation, analysis and finite element discretization of improved Boussinesq-type models for surface water waves: travelling-wave and soliton-type solutions, continuous/discontinuous Galerkin methods, and time-dependent bathymetry. With LNEC, coastal-engineering applications: breakwater damage, wave-model calibration, and early-warning systems for ports.</p>
+      <p>Derivation, analysis and finite element discretization of improved Boussinesq-type models for surface water waves: travelling-wave and soliton-type solutions, continuous/discontinuous Galerkin methods, and time-dependent bathymetry. With LNEC, coastal-engineering applications: breakwater damage, wave-model calibration, and early-warning systems for ports. Current work: tsunami propagation on the sphere over real bathymetry, tested on the 1969 Horseshoe event against tide-gauge arrival times.</p>
       <p class="meta">Key papers: <a href="#p-ijnmf-2012">IJNMF 2012</a> · <a href="#p-nody-2015">Nonlinear Dyn. 2015</a> · <a href="#c-fenics-2012">FEniCS book</a> · <a href="#p-cose-2026">COSE 2026</a></p>
     </article>
 
@@ -782,6 +782,16 @@
   <h3 class="eyebrow">Water waves</h3>
   <div class="tiles">
     <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="290"
+        poster="media/gallery/horseshoe-lisbon.jpg" aria-label="Animation: 1969 Horseshoe tsunami off Lisbon and Setúbal, scenario C2"><source src="media/gallery/horseshoe-lisbon.mp4" type="video/mp4"></video></div>
+      <figcaption>1969 Horseshoe tsunami off Lisbon and Setúbal, scenario C2<span class="m">DOLFWAVE in Julia · 20–120 min · 2026</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="178"
+        poster="media/gallery/horseshoe-tagus-mouth.jpg" aria-label="Animation: Tagus mouth open (left) or closed (right): a spurious mode on the open section"><source src="media/gallery/horseshoe-tagus-mouth.mp4" type="video/mp4"></video></div>
+      <figcaption>Tagus mouth open (left) or closed (right): a spurious mode on the open section<span class="m">DOLFWAVE in Julia · 1969 Horseshoe, scenario C2 · 2026</span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
       <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="380" height="320"
         poster="media/gallery/ringtest.jpg" aria-label="Animation: Ring test (Liu and Woo, 2004)"><source src="media/gallery/ringtest.mp4" type="video/mp4"></video></div>
       <figcaption>Ring test (Liu and Woo, 2004)<span class="m">DOLFWAVE · C/DG finite elements</span></figcaption>
@@ -794,17 +804,22 @@
     <figure class="tile" data-topics="waves">
       <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="372" height="244"
         poster="media/gallery/harbour.jpg" aria-label="Animation: Waves generated at the boundary entering a harbour"><source src="media/gallery/harbour.mp4" type="video/mp4"></video></div>
-      <figcaption>Waves generated at the boundary entering a harbour<span class="m">DOLFWAVE · Zhao–Cheng–Teng model · 2009</span></figcaption>
+      <figcaption>Waves generated at the boundary entering a harbour<span class="m">DOLFWAVE · Zhao–Teng–Cheng model · 2009</span></figcaption>
     </figure>
     <figure class="tile" data-topics="waves">
       <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="410" height="290"
         poster="media/gallery/bathymetry-zct.jpg" aria-label="Animation: Wave propagation over variable bathymetry"><source src="media/gallery/bathymetry-zct.mp4" type="video/mp4"></video></div>
-      <figcaption>Wave propagation over variable bathymetry<span class="m">DOLFWAVE · Zhao–Cheng–Teng model</span></figcaption>
+      <figcaption>Wave propagation over variable bathymetry<span class="m">DOLFWAVE · Zhao–Teng–Cheng model</span></figcaption>
     </figure>
     <figure class="tile" data-topics="waves">
       <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="460" height="310"
         poster="media/gallery/bottom-displacement.jpg" aria-label="Animation: Wave generated by a horizontal displacement of the bottom"><source src="media/gallery/bottom-displacement.mp4" type="video/mp4"></video></div>
       <figcaption>Wave generated by a horizontal displacement of the bottom<span class="m">2016 · <a href="https://www.youtube.com/watch?v=BotK383Xk7A">YouTube</a></span></figcaption>
+    </figure>
+    <figure class="tile" data-topics="waves">
+      <div class="plate dark"><video class="clip" muted loop playsinline controls preload="none" width="480" height="308"
+        poster="media/gallery/tsunami-3d.jpg" aria-label="Animation: Toy tsunami along the Portuguese coast: surface elevation, 3D view"><source src="media/gallery/tsunami-3d.mp4" type="video/mp4"></video></div>
+      <figcaption>Toy tsunami along the Portuguese coast: surface elevation, 3D view<span class="m">2016 · <a href="https://www.youtube.com/watch?v=mesCz0e27qs">YouTube</a></span></figcaption>
     </figure>
     <figure class="tile" data-topics="waves">
       <div class="plate dark"><video class="clip" muted loop playsinline controls preload="none" width="372" height="266"
@@ -824,7 +839,7 @@
     <figure class="tile" data-topics="waves">
       <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="480" height="408"
         poster="media/gallery/bathymetry-2007.jpg" aria-label="Animation: Wave over variable bathymetry"><source src="media/gallery/bathymetry-2007.mp4" type="video/mp4"></video></div>
-      <figcaption>Wave over variable bathymetry<span class="m">Zhao–Cheng–Teng model · FEM · 2007</span></figcaption>
+      <figcaption>Wave over variable bathymetry<span class="m">Zhao–Teng–Cheng model · FEM · 2007</span></figcaption>
     </figure>
     <figure class="tile" data-topics="waves">
       <div class="plate"><video class="clip" muted loop playsinline controls preload="none" width="468" height="404"
