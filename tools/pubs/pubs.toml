@@ -16,6 +16,24 @@
 
 # ------------------------------------------------------------------ journal articles
 
+# Accepted 4 Nov 2026, no publisher record yet. When Crossref has it, add doi, volume, number
+# and pages, update display, drop the note, and correct year if the issue is 2027.
+[[pub]]
+id = "p-geno-2026"
+section = "journal"
+topics = ["industry"]
+badge = "GENO"
+year = 2026
+authors = ["J. O. Cerdeira", "R. Enguiça", "N. D. Lopes"]
+title = "Parallel machine scheduling with simultaneous interruptions: a case study in shoe sole production"
+display = "<em>Engineering Optimization</em>, to appear"
+bibtype = "article"
+journal = "Engineering Optimization"
+note = "To appear"
+links = [{ label = "Code", url = "https://github.com/ndlopes-github/ShoeOptSetupTime" }, { label = "Zenodo", url = "https://doi.org/10.5281/zenodo.20642118" }]
+# abstract: authors' final LaTeX (Working-Paper-Scheduling-optimization, main.tex at e42325a), verbatim except ' -> ’
+abstract = '''This paper addresses a real-world scheduling problem arising in shoe sole manufacturing, where parallel machines must be coordinated under simultaneous synchronized interruptions caused by shared resource constraints. Specifically, whenever the first job in a group of simultaneously processed jobs is completed, all remaining jobs are interrupted. This interruption mechanism, in which synchronized interruptions are triggered by the completion of the first job in a group, rather than by the completion of the last job or by external disruptions, leads to a scheduling structure that, to the best of the authors’ knowledge, has not been previously studied. Mixed-integer linear programming models that provide exact formulations of the problem are developed, along with heuristic methods designed to efficiently handle large-scale instances. Computational experiments based on real production data provided by a footwear manufacturer show that the proposed methods significantly improve production efficiency and generate schedules that are directly applicable in an industrial setting.'''
+
 [[pub]]
 id = "p-cose-2026"
 section = "journal"
@@ -426,13 +444,3 @@ badge = "Review"
 authors = ["A. Mendonça", "R. Lemos", "C. J. E. M. Fortes", "N. D. Lopes", "A. Prior", "L. Brito", "B. Pereira", "T. Lopes"]
 title = "Probabilistic damage evolution of tetrapod-armoured rubble-mound breakwaters: calibration from 3D physical modelling and 100-year forecasts"
 display = "Under review"
-
-[[pub]]
-id = "s-shoes"
-section = "review"
-topics = ["industry"]
-badge = "Review"
-authors = ["J. O. Cerdeira", "R. Enguiça", "N. D. Lopes"]
-title = "Parallel machine scheduling with simultaneous interruptions: a case study in shoe sole production"
-display = "Under review"
-links = [{ label = "Code", url = "https://github.com/ndlopes-github/ShoeOptSetupTime" }, { label = "Zenodo", url = "https://doi.org/10.5281/zenodo.20642118" }]
