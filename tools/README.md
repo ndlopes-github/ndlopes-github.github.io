@@ -41,10 +41,13 @@ Captions follow the pages that first showed each film: the 2007 Navier–Stokes 
 
 ## Climate-change corridors (NewIC5)
 
-The two stills in the Work in progress section come from NewIC5 (private repository `ndlopes-github/NewIC5`, not linked) at commit `bfa1b1e`; both source files were last changed in `f564727` (2026-11-24). They are the figures of the software paper draft (`working_paper/main.tex`, 24 Nov 2026).
+The two images in the Work in progress section are the map of the Footprint page of NewIC5 (private repository `ndlopes-github/NewIC5`, not linked; web interface at commit `bfa1b1e`), captured by `tools/newic5/footprint_shot.jl` (headless Firefox over WebDriver BiDi; see its header for the setup).
 
-- `corridors-sites.png`: the PK row (K = 10, seed 2024) of `working_paper/figures/map_small_article.pdf` (made by `scripts/paper/make_maps.jl small_article`, md5 `ddd24a74…`), re-tiled 2×2. Steps: `pdftoppm -r 300 -png -singlefile` (2159×1371); the four panels of the top row cropped with their "Period t" titles, `485x425+{83,600,1122,1641}+15`, which drops the row label and the "n sites" counts; `montage -tile 2x2 -geometry +45+10 -background white` (1150×890). Small example with the iC5 defaults (n_s = 500, U = 25); its inputs other than the dispersal limits are the published iC5 data of Alagador and Cerdeira (2020), Zenodo doi:10.5281/zenodo.3932003.
-- `corridors-footprint.jpg`: the map area of `working_paper/figures/web_footprint.png` (made by `scripts/paper/make_screenshots.mjs`, md5 `3ae95b56…`), the Footprint page on the same example, species 7. `convert -crop 728x568+2+2 -strip -sampling-factor 4:4:4 -quality 88`, which drops the side panel. The page's light look is a CSS filter applied by the screenshot script. The base map is OpenStreetMap; the caption carries the attribution.
+- Project `Proj_benchmark_60` (292 species, 8,894 sites, four periods), corridors file `generated_corridors/corridors_grid_k200_u20_2026-11-11_173907_merged.h5` (method `grid`, n = 200, usage cap U = 20; generated after the 2026-11-10 generator fix; 20,742 corridors).
+- `corridors-footprint-sp22.jpg` and `corridors-footprint-sp288.jpg`: species 22 and 288 (1-based, as in the interface), colour map Turbo, persistence range the page's default (whole range). Their corridors cover 5,419 and 5,455 sites, the most after species 292. That species was skipped: it has positive persistence (0.24 to 1.0) in all 20,742 corridors of the file, related to an open issue in NewIC5 (in Proj_PI1_60 its persistence is 1.00 in every corridor).
+- Capture: map pinned at 1250×1000 px, zoom and layer buttons hidden, fitted to Iberia; the colours are the page's own (fill opacity 0.6). Then `convert -crop 1248x998+2+2 -resize 1000x -strip -sampling-factor 4:4:4 -quality 86`.
+- Run: `julia --project=<env with HTTP, JSON3> tools/newic5/footprint_shot.jl <outdir> 'grid_k200_u20.*_merged[.]h5$' <species> Turbo 1400 1100`.
+- The base map is OpenStreetMap; the caption carries the attribution.
 
 ## Publications
 
