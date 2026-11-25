@@ -245,6 +245,18 @@ main section + section { margin-top: 1rem; border-top: 1px solid var(--rule); }
 .theme .meta { font-size: 0.82rem; color: var(--muted); }
 
 
+/* ---------- work in progress: a project with figures ---------- */
+
+.project h4 { font-size: 1.02rem; font-weight: 650; line-height: 1.3; margin: 0 0 0.15rem; }
+.project .by { font-size: 0.86rem; color: var(--muted); margin-bottom: 0.75rem; }
+.project p:not(.by) { font-size: 0.95rem; margin-bottom: 0.65rem; }
+.figs { display: grid; gap: 1.25rem 1.5rem; margin-top: 1rem; align-items: start; }
+@media (min-width: 40rem) { .figs { grid-template-columns: 1fr 1fr; } }
+.figs figure { margin: 0; }
+.figs .plate { aspect-ratio: auto; padding: 0.4rem; }
+.figs .plate img { height: auto; }
+.figs figcaption { font-size: 0.75rem; color: var(--faint); line-height: 1.45; margin-top: 0.45rem; }
+
 /* ---------- generic entry lists (talks, supervision, projects, software in development) ---------- */
 
 .entries { list-style: none; margin: 0; padding: 0; }
@@ -476,6 +488,6 @@ footer a { color: var(--muted); }
   .topnav, .skip, .filters, .actions, .panel, video { display: none !important; }
   body { background: #fff; color: #000; font-size: 10pt; }
   main section { break-inside: auto; padding-top: 1rem; }
-  .pub, .entries > li, .theme, .software li { break-inside: avoid; }
+  .pub, .entries > li, .theme, .software li, .figs figure { break-inside: avoid; }
   a { color: inherit; }
 }
